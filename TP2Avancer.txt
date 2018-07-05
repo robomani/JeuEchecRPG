@@ -1,0 +1,27 @@
+Pion: Kamikase déga sur toutes les pièces adgecentes 
+	HP:2 AT:3
+
+Tour: Si la tour fait asser de déga pour tuer une pièce, elle peut attaquer la case derrière la pièce tuer
+	HP:4 AT:2 AR:1	
+
+Fou: Attaque une pièce à une case non diagonnale, si la pièce meurt elle devien de la couleur du fou
+	HP:1 AT:5
+
+Cheval: Permet de bouger une pièce adgecente à une position vide où le cheval peut se déplacer
+	HP:4 AT:4
+
+Reine: Crée 3 pions devans la reine.
+	HP:5 AT:3
+
+Roi: Mange une pièce allier et gagne les stats de la pièce manger (Additif)
+	HP:1 AT:0 AR:0
+
+
+
+Joueur
+1: Sélectionne une pièce ennemie qui ne peut pas être utiliser pour le prochain tour
+2: Permet à une pièce allier de réutiliser un pouvoir
+3: Donne +2HP +2AT à une pièce
+5: Échanges deux pièces d'une même couleur
+25:Nuke
+
