@@ -2,8 +2,12 @@
 
 #include <SDL_image.h>
 
-Piece::Piece(const std::string a_PieceTexturePath)
+Piece::Piece(const std::string a_PieceTexturePath, int i_HP, int i_Attack, int i_Armor)
 {
+	m_HP = i_HP;
+	m_Attack = i_Attack;
+	m_Armor = i_Armor;
+
 	m_PieceTexture = IMG_Load((a_PieceTexturePath + ".png").c_str());
 
 	m_AvailableMoves = std::vector<std::vector<std::tuple<int, int>>>();

@@ -21,22 +21,22 @@ Case::Case(const int a_X, const int a_Y, const Enums::EPieceType a_PieceType, co
 	switch (a_PieceType)
 	{
 	case Enums::EPieceType::Pion:
-		m_Piece = new Pion(a_Color);
+		m_Piece = new Pion(a_Color, 2, 3);
 		break;
 	case Enums::EPieceType::Tour:
-		m_Piece = new Tour(a_Color);
+		m_Piece = new Tour(a_Color, 4, 2, 1);
 		break;
 	case Enums::EPieceType::Chevalier:
-		m_Piece = new Chevalier(a_Color);
+		m_Piece = new Chevalier(a_Color, 4, 4);
 		break;
 	case Enums::EPieceType::Fou:
-		m_Piece = new Fou(a_Color);
+		m_Piece = new Fou(a_Color, 1, 5);
 		break;
 	case Enums::EPieceType::Reine:
-		m_Piece = new Reine(a_Color);
+		m_Piece = new Reine(a_Color, 5, 3);
 		break;
 	case Enums::EPieceType::Roi:
-		m_Piece = new Roi(a_Color);
+		m_Piece = new Roi(a_Color, 1, 0);
 		break;
 	default:
 		break;
