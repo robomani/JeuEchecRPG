@@ -16,14 +16,14 @@ Pion::Pion(const Enums::EPieceColor a_PieceColor)
 
 	if (m_PieceColor == Enums::EPieceColor::Blanche)
 	{
-		m_PossibleAttacks[Enums::EDirection::South].push_back(std::tuple<int, int>(-1, -1));
-		m_PossibleAttacks[Enums::EDirection::South].push_back(std::tuple<int, int>(-1, 1));
+		m_PossibleAttacks[Enums::EDirection::South_West].push_back(std::tuple<int, int>(-1, -1));
+		m_PossibleAttacks[Enums::EDirection::South_East].push_back(std::tuple<int, int>(-1, 1));
 
 	}
 	else
 	{
-		m_PossibleAttacks[Enums::EDirection::North].push_back(std::tuple<int, int>(1, -1));
-		m_PossibleAttacks[Enums::EDirection::North].push_back(std::tuple<int, int>(1, 1));
+		m_PossibleAttacks[Enums::EDirection::North_West].push_back(std::tuple<int, int>(1, -1));
+		m_PossibleAttacks[Enums::EDirection::North_East].push_back(std::tuple<int, int>(1, 1));
 	}
 }
 

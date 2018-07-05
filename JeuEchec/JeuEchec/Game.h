@@ -3,6 +3,7 @@
 
 #include "EPieceColor.h"
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 class Board;
 
@@ -68,6 +69,11 @@ private:
 	SDL_Surface* m_WindowSurface;  // The surface of the SDL window
 
 	Board* m_Board;  // The instance of the board.
+
+	SDL_Renderer* m_Renderer;
+	TTF_Font* m_Font;
+	SDL_Color m_TextColor;
+	SDL_Rect m_TextRect;
 };
 
 #endif // __GAME__
