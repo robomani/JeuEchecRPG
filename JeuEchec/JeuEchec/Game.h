@@ -6,6 +6,7 @@
 #include <SDL_ttf.h>
 
 class Board;
+class Player;
 
 class Game
 {
@@ -56,7 +57,7 @@ private:
 	bool Inputs();
 	
 	/// <summary>
-	/// Call the draw on every cases
+	/// Call the draw on every cases and every texts.
 	/// </summary>
 	void Draw();
 	
@@ -70,10 +71,8 @@ private:
 
 	Board* m_Board;  // The instance of the board.
 
-	SDL_Renderer* m_Renderer;
-	TTF_Font* m_Font;
-	SDL_Color m_TextColor;
-	SDL_Rect m_TextRect;
+	Player* m_Player01; //The instance of the player01.
+	Player* m_Player02; //The instance of the player02.
 };
 
 #endif // __GAME__
