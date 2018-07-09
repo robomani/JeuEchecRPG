@@ -2,9 +2,17 @@
 /Library
 Library
 Temp
+<<<<<<< HEAD
 /JeuEchec/Debug
 /JeuEchec/.vs
 /JeuEchec/JeuEchec/Debug
 /JeuEchec/JeuEchec/JeuEchec.vcxproj
 /JeuEchec/JeuEchec/JeuEchec.vcxproj.filters
 /JeuEchec/JeuEchec/JeuEchec.vcxproj.user
+=======
+Debug
+.vs
+/JeuEchec/JeuEchec/Debug
+/JeuEchec/JeuEchec/JeuEchec.vcxproj
+/JeuEchec/JeuEchec/JeuEchec.vcxproj.filters
+>>>>>>> 03f41d367ff07bd9567cbe4731780be40dc4cc6b
