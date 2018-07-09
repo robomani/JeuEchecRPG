@@ -1,7 +1,7 @@
 #include "Tour.h"
 
-Tour::Tour(const Enums::EPieceColor a_PieceColor)
-	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WTower" : "images/BTower")
+Tour::Tour(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
+	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WTower" : "images/BTower", i_HP, i_Attack, i_Armor)
 {
 	m_PieceType = Enums::EPieceType::Tour;
 	m_PieceColor = a_PieceColor;

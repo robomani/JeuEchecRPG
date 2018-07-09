@@ -1,8 +1,8 @@
 #include "Pion.h"
 #include "Case.h"
 
-Pion::Pion(const Enums::EPieceColor a_PieceColor)
-	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WPawn" : "images/BPawn")
+Pion::Pion(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
+	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WPawn" : "images/BPawn", i_HP, i_Attack, i_Armor)
 {
 	m_PieceType = Enums::EPieceType::Pion;
 	m_PieceColor = a_PieceColor;

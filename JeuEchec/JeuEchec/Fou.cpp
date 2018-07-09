@@ -1,7 +1,7 @@
 #include "Fou.h"
 
-Fou::Fou(const Enums::EPieceColor a_PieceColor)
-	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WBishop" : "images/BBishop")
+Fou::Fou(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
+	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WBishop" : "images/BBishop", i_HP, i_Attack, i_Armor)
 {
 	m_PieceType = Enums::EPieceType::Fou;
 	m_PieceColor = a_PieceColor;
