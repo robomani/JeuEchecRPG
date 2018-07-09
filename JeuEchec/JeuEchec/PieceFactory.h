@@ -11,4 +11,3 @@ public:
 
 	static Piece* CreatePiece(const Enums::EPieceType a_PieceType, const Enums::EPieceColor a_Color);
 };
-

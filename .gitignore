@@ -39,3 +39,8 @@ Debug
 /JeuEchec/JeuEchec/Debug/vc141.pdb
 /JeuEchec/JeuEchec/JeuEchec.vcxproj
 /JeuEchec/JeuEchec/JeuEchec.vcxproj.filters
+/JeuEchec/.vs/JeuEchec/v15/ipch/AutoPCH/120888c8c47378ac/BOARD.ipch
+/JeuEchec/.vs/JeuEchec/v15/ipch/AutoPCH/355ebb2ddaa9e444/PIECE.ipch
+/JeuEchec/.vs/JeuEchec/v15/ipch/AutoPCH/fb0ab8b341415a32/CASE.ipch
+/JeuEchec/JeuEchec/Debug/Player.obj
+/JeuEchec/JeuEchec/Debug/Text.obj
