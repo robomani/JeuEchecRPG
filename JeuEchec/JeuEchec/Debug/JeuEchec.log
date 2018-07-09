@@ -1,2 +1,13 @@
-﻿  JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe
-  JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.pdb (Partial PDB)
+﻿  main.cpp
+  Game.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(50): warning C4091: 'static ' : ignoré à gauche de 'Text::TextData' quand aucune variable n'est déclarée
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(55): warning C4091: 'static ' : ignoré à gauche de 'Text' quand aucune variable n'est déclarée
+  Board.cpp
+  Génération de code en cours...
+cl : Ligne de commande warning D9028: échec de la régénération minimale, passage à la génération normale
+  LINK : D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
+Game.obj : error LNK2019: symbole externe non résolu "public: __thiscall Player::Player(void)" (??0Player@@QAE@XZ) référencé dans la fonction "private: void __thiscall Game::Init(void)" (?Init@Game@@AAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu "public: static void __cdecl Text::Init(void)" (?Init@Text@@SAXXZ) référencé dans la fonction "private: void __thiscall Game::Init(void)" (?Init@Game@@AAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu "public: static void __cdecl Text::Destroy(void)" (?Destroy@Text@@SAXXZ) référencé dans la fonction "public: __thiscall Game::~Game(void)" (??1Game@@QAE@XZ)
+Game.obj : error LNK2019: symbole externe non résolu "public: static void __cdecl Text::Draw(struct SDL_Surface *)" (?Draw@Text@@SAXPAUSDL_Surface@@@Z) référencé dans la fonction "private: void __thiscall Game::Draw(void)" (?Draw@Game@@AAEXXZ)
+D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe : fatal error LNK1120: 4 externes non résolus
