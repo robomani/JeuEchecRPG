@@ -2,3 +2,8 @@
 /Library
 Library
 Temp
+Debug
+.vs
+/JeuEchec/JeuEchec/Debug
+/JeuEchec/JeuEchec/JeuEchec.vcxproj
+/JeuEchec/JeuEchec/JeuEchec.vcxproj.filters
