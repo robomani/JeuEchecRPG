@@ -1,16 +1,17 @@
 #include "Game.h"
 #include "Board.h"
+#include "Player.h"
+#include "Text.h"
 #include <iostream>
 
 Enums::EPieceColor Game::m_ColorTurn = Enums::EPieceColor::Blanche;
-const int Game::SCREEN_WIDTH = 1000;
+const int Game::SCREEN_WIDTH = 1500;
 const int Game::SCREEN_HEIGHT = 1000;
 
 Game::Game()
 {
 	Init();
 }
-
 
 Game::~Game()
 {
@@ -26,24 +27,26 @@ Game::~Game()
 		m_Window = nullptr;
 	}
 
-	TTF_CloseFont(m_Font);
-	TTF_Quit();
+	Text::Destroy();
+
+	TTF_Quit(); //Close the TTF.
 }
 
 void Game::Init()
 {
+	TTF_Init(); //Init the TTF for the game to Draw texts.
+
+	//Init the Text
+	Text::Init();
+
 	// Init the SDL Window
 	m_Window = SDL_CreateWindow("Once upon a chess", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	m_WindowSurface = SDL_GetWindowSurface(m_Window);
 
-	//Init the TTF
-	TTF_Init();
-	m_Renderer = SDL_CreateRenderer(m_Window, 0, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
-	m_Font = TTF_OpenFont("./times.ttf", 24);
-	m_TextColor = { 255, 0, 255 };
-	m_TextRect = { 810, 0, 100, 100 };
-
 	m_Board = new Board();
+
+	m_Player01 = new Player();
+	m_Player02 = new Player();
 }
 
 void Game::Run()
@@ -54,7 +57,6 @@ void Game::Run()
 		Draw();
 		Update();
 	}
-
 }
 
 bool Game::Inputs()
@@ -107,9 +109,7 @@ void Game::Draw()
 
 	m_Board->Draw(m_WindowSurface);
 
-	SDL_Surface* textSurface = TTF_RenderText_Solid(m_Font, "Pipi Patate Poil", m_TextColor);
-	SDL_BlitSurface(textSurface, NULL, m_WindowSurface, &m_TextRect);
-	SDL_FreeSurface(textSurface);
+	Text::Draw(m_WindowSurface);
 }
 
 void Game::Update()
