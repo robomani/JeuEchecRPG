@@ -129,9 +129,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="PieceFactory.cpp" />
     <ClCompile Include="Pion.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Reine.cpp" />
     <ClCompile Include="Roi.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Tour.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,12 +144,16 @@
     <ClInclude Include="EDirection.h" />
     <ClInclude Include="EPieceColor.h" />
     <ClInclude Include="EPieceType.h" />
+    <ClInclude Include="ETextContent.h" />
     <ClInclude Include="Fou.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="PieceFactory.h" />
     <ClInclude Include="Pion.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Reine.h" />
     <ClInclude Include="Roi.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Tour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
