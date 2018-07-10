@@ -13,7 +13,29 @@ void Text::Init()
 
 	for (int i = 0; i < ETextContent::Count; i++)
 	{
-		m_Texts.push_back(new TextData("Pipi patate poil", { 255, 0, 255 }, {1000, 30*i, 100, 100}));
+		switch (i)
+		{
+		case ETextContent::PiecesText:
+			{
+				m_Texts.push_back(new TextData("Le powerup de la piece selectionnee apparait ici", { 255, 0, 255 }, {1000, 300, 100, 100}));
+				break;
+			}
+		case ETextContent::Player01ManaText:
+			{
+				m_Texts.push_back(new TextData("Mana: 01", { 255, 0, 255 }, { 0, 350, 100, 100 }));
+				break;
+			}		
+		case ETextContent::Player02ManaText:
+			{
+				m_Texts.push_back(new TextData("Mana: 02", { 255, 0, 255 }, { 0, 650, 100, 100 }));
+				break;
+			}
+		case ETextContent::PlayerPowersText:
+			{
+				m_Texts.push_back(new TextData("Les powerups du joueurs apparaissent ici", { 255, 0, 255 }, { 1000, 800, 100, 100 }));
+				break;
+			}
+		}
 	}
 }
 
