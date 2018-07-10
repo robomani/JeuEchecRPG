@@ -89,11 +89,13 @@ public:
 	int GetArmor() { return m_Armor; }
 
 	//Fonction to damage the peice. If the peice die it return true esle it return false
-	bool DamagePiece(int i_Damage) { return (m_HP - (i_Damage - m_Armor)) > 0 ?  false : true; }
+	bool DamagePiece(int i_Damage) { return (m_HP -= (i_Damage - m_Armor)) > 0 ?  false : true; }
 	//Make the piece able to use it's power again
 	void ResetPower() { m_PowerReady = true; }
-	//Boost the peice by selected amount
-	void BoostPeice(int i_Boost) { m_Attack += i_Boost; m_HP += i_Boost; }
+	//Make the piece use it's power
+	virtual void UsePower() { m_PowerReady = false; }
+	//Boost the Piece by selected amount
+	void BoostPiece(int i_Boost) { m_Attack += i_Boost; m_HP += i_Boost; }
 	
 protected:
 	

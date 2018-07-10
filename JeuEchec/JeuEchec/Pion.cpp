@@ -30,3 +30,9 @@ Pion::Pion(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_
 Pion::~Pion()
 {
 }
+
+void Pion::UsePower()
+{
+
+	m_PowerReady = false;
+}
