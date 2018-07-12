@@ -1,5 +1,4 @@
 #include "Text.h"
-#include "ETextContent.h"
 
 std::vector<Text::TextData*> Text::m_Texts = std::vector<TextData*>(); //The texts.
 
@@ -32,37 +31,37 @@ void Text::Init()
 			}
 		case ETextContent::Player01Mana:
 			{
-				m_Texts.push_back(new TextData("Mana: 01", { 255, 0, 255 }, { 0, 350, 100, 100 }));
+				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 350, 100, 100 }));
 				break;
 			}		
 		case ETextContent::Player02Mana:
 			{
-				m_Texts.push_back(new TextData("Mana: 02", { 255, 0, 255 }, { 0, 650, 100, 100 }));
+				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 650, 100, 100 }));
 				break;
 			}
 		case ETextContent::PlayerPower01:
 			{
-				m_Texts.push_back(new TextData("Le powerup01 du joueur apparait ici", { 0, 255, 0 }, { 1000, 800, 100, 100 }));
+				m_Texts.push_back(new TextData("Cost 1: End Turn.", { 255, 0, 0 }, { 1000, 800, 100, 100 }));
 				break;
 			}		
 		case ETextContent::PlayerPower02:
 			{
-				m_Texts.push_back(new TextData("Le powerup02 du joueur apparait ici", { 0, 255, 0 }, { 1000, 825, 100, 100 }));
+				m_Texts.push_back(new TextData("Cost 2: A Ally Piece Can Re-Use a Power", { 255, 0, 0 }, { 1000, 825, 100, 100 }));
 				break;
 			}
 		case ETextContent::PlayerPower03:
 			{
-				m_Texts.push_back(new TextData("Le powerup03 du joueur apparait ici", { 0, 255, 0 }, { 1000, 850, 100, 100 }));
+				m_Texts.push_back(new TextData("Cost 3: Give +2 HP and Attack To a Ally", { 255, 0, 0 }, { 1000, 850, 100, 100 }));
 				break;
 			}
 		case ETextContent::PlayerPower04:
 			{
-				m_Texts.push_back(new TextData("Le powerup04 du joueur apparait ici", { 255, 0, 0 }, { 1000, 875, 100, 100 }));
+				m_Texts.push_back(new TextData("Cost 5: Switch The Place of Two Ally", { 255, 0, 0 }, { 1000, 875, 100, 100 }));
 				break;
 			}
 		case ETextContent::PlayerPower05:
 			{
-				m_Texts.push_back(new TextData("Le powerup05 du joueur apparait ici", { 255, 0, 0 }, { 1000, 900, 100, 100 }));
+				m_Texts.push_back(new TextData("Cost 25: Nuke, AKA Win The Game!", { 255, 0, 0 }, { 1000, 900, 100, 100 }));
 				break;
 			}
 		}
