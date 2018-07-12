@@ -120,6 +120,16 @@ public:
 	/// </returns>
 	bool IsPieceIsNotThisColor(Enums::EPieceColor a_Color) { return m_Piece->IsNotThisColor(a_Color); }
 
+	/// <summary>
+	/// Get the attack value of the piece on this case
+	/// </summary>
+	int CurrentPieceAttack() { return m_Piece->GetAttack(); }
+
+	/// <summary>
+	/// Damage the piece on this tile and return if the piece is dead
+	/// </summary>
+	bool DamageCurrentPiece(int i_Damage) { return m_Piece->DamagePiece(i_Damage); }
+
 private:
 	
 	/// <summary>

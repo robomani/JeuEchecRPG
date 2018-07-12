@@ -163,8 +163,16 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 				}
 				else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
 				{
+					int damage = m_CurrentCase->CurrentPieceAttack();
 					caseTargeted->SwapPieceWith(m_CurrentCase);
-					m_CurrentCase->RemovePiece();
+					if (m_CurrentCase->DamageCurrentPiece(damage))
+					{
+						m_CurrentCase->RemovePiece();
+					}
+					else
+					{
+						caseTargeted->SwapPieceWith(m_CurrentCase);
+					}						
 					Game::ChangeColorTurn();
 				}
 			}
