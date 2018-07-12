@@ -1,7 +1,0 @@
-﻿  Text.cpp
-d:\users\1810042\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(76): warning C4091: 'static ' : ignoré à gauche de 'Text::TextData' quand aucune variable n'est déclarée
-d:\users\1810042\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(81): warning C4091: 'static ' : ignoré à gauche de 'Text' quand aucune variable n'est déclarée
-d:\users\1810042\desktop\jeuechecrpg\jeuechec\jeuechec\text.cpp(95): warning C4838: la conversion de 'int' en 'Uint8' requiert une conversion restrictive
-d:\users\1810042\desktop\jeuechecrpg\jeuechec\jeuechec\text.cpp(101): warning C4018: '<' : incompatibilité signed/unsigned
-  JeuEchec.vcxproj -> D:\Users\1810042\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe
-  JeuEchec.vcxproj -> D:\Users\1810042\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.pdb (Partial PDB)
