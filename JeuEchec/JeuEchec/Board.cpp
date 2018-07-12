@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "Case.h"
 #include "Game.h"
+#include "EPieceType.h"
 #include <SDL_image.h>
 
 const int Board::CASE_NUMBER = 8;
@@ -131,6 +132,7 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 		{
 			m_CurrentCase = m_Cases[i][j];
 			m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
+			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
 			m_CurrentCase->Move(a_X, a_Y);
 		}
 	}
@@ -144,6 +146,14 @@ void Board::MouseMotion(const int a_X, const int a_Y)
 	}
 }
 
+void Board::ToogleUsingPower()
+{
+	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->GetPowerReady())
+	{
+		m_UsingPower = !m_UsingPower;
+	}
+}
+
 void Board::MouseButtonUp(const int a_X, const int a_Y)
 {
 	if (m_CurrentCase != nullptr)
@@ -153,19 +163,56 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 		if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 		{
 			Case* caseTargeted = m_Cases[i][j];
-			if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
+			if (!m_UsingPower)
 			{
-				// The targeted case is empty
-				if (caseTargeted->IsEmpty())
+				if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
 				{
-					caseTargeted->SwapPieceWith(m_CurrentCase);
-					Game::ChangeColorTurn();
+					// The targeted case is empty
+					if (caseTargeted->IsEmpty())
+					{
+						caseTargeted->SwapPieceWith(m_CurrentCase);
+						Game::ChangeColorTurn();
+					}
+					else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
+					{
+						int damage = m_CurrentCase->CurrentPieceAttack();
+						caseTargeted->SwapPieceWith(m_CurrentCase);
+						if (m_CurrentCase->DamageCurrentPiece(damage))
+						{
+							m_CurrentCase->RemovePiece();
+						}
+						else
+						{
+							caseTargeted->SwapPieceWith(m_CurrentCase);
+						}
+						Game::ChangeColorTurn();
+					}
 				}
-				else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
+			}
+			else
+			{
+				if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
 				{
-					caseTargeted->SwapPieceWith(m_CurrentCase);
-					m_CurrentCase->RemovePiece();
-					Game::ChangeColorTurn();
+					
+					switch (m_CurrentCase->GetPieceType())
+					{
+					case Enums::EPieceType::Pion:
+
+						break;
+					case Enums::EPieceType::Chevalier:
+						break;
+					case Enums::EPieceType::Tour:
+						break;
+					case Enums::EPieceType::Fou:
+						break;
+					case Enums::EPieceType::Reine:
+						break;
+					case Enums::EPieceType::Roi:
+						break;
+					default:
+						break;
+					}
+					m_CurrentCase->UsePower();
 				}
 			}
 		}

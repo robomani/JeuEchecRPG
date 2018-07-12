@@ -133,6 +133,45 @@ std::vector<std::tuple<int, int>> Case::GetAvailableMoves(const std::vector<std:
 	return availableMoves;
 }
 
+std::vector<std::tuple<int, int>> Case::GetAffectedPowerCases(const std::vector<std::vector<Case*>> a_Cases)
+{
+	if (m_Piece == nullptr)
+	{
+		return std::vector<std::tuple<int, int>>();
+	}
+
+	std::vector<std::tuple<int, int>> affectedCases = std::vector<std::tuple<int, int>>();
+
+	// Look for availablesMoves
+	std::vector<std::vector<std::tuple<int, int>>> possibleMoves = m_Piece->GetAffectedPower();
+
+	// Go trought all directions availables for the piece
+	for (std::vector<std::vector<std::tuple<int, int>>>::iterator iter2 = possibleMoves.begin(); iter2 != possibleMoves.end(); iter2++)
+	{
+		// Check all available cases
+		for (std::vector<std::tuple<int, int>>::iterator iter = (*iter2).begin(); iter != (*iter2).end(); iter++)
+		{
+			// Update the index of the move with the I and J of this case.
+			(*iter) = std::tuple<int, int>(std::get<0>(*iter) + GetI(), std::get<1>(*iter) + GetJ());
+
+			int i = std::get<0>(*iter);
+			int j = std::get<1>(*iter);
+			if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
+			{
+				if (a_Cases[i][j]->IsEmpty())
+				{
+					affectedCases.push_back(*iter);
+				}
+				else if (m_Piece->GetType() != Enums::EPieceType::Chevalier) // the only piece to jump over other pieces is the knight.
+				{
+					break;
+				}
+			}
+		}
+	}
+	return affectedCases;
+}
+
 void Case::BackToOriginalPosition() 
 {
 	m_Rect.x = m_OriginalX;

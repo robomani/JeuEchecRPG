@@ -50,6 +50,11 @@ public:
 	virtual std::vector<std::vector<std::tuple<int, int>>> GetPossibleAttack() { return m_AvailableMoves; } // Return the same as availableMoves. Only pawns have different move for attack.
 	
 	/// <summary>
+	/// Gets the Cases Affected by the power of this piece.
+	/// </summary>
+	std::vector<std::vector<std::tuple<int, int>>> GetAffectedPower() { return m_AffectedPower; }
+
+	/// <summary>
 	/// Gets the color.
 	/// </summary>
 	/// <returns>The piece color</returns>
@@ -89,11 +94,13 @@ public:
 	int GetArmor() { return m_Armor; }
 
 	//Fonction to damage the peice. If the peice die it return true esle it return false
-	bool DamagePiece(int i_Damage) { return (m_HP - (i_Damage - m_Armor)) > 0 ?  false : true; }
+	bool DamagePiece(int i_Damage) { return (m_HP -= (i_Damage - m_Armor)) > 0 ?  false : true; }
 	//Make the piece able to use it's power again
 	void ResetPower() { m_PowerReady = true; }
-	//Boost the peice by selected amount
-	void BoostPeice(int i_Boost) { m_Attack += i_Boost; m_HP += i_Boost; }
+	//Make the piece use it's power
+	virtual void UsePower() { m_PowerReady = false; }
+	//Boost the Piece by selected amount
+	void BoostPiece(int i_Boost) { m_Attack += i_Boost; m_HP += i_Boost; }
 	
 protected:
 	
@@ -108,6 +115,8 @@ protected:
 	Enums::EPieceColor m_PieceColor;  // The piece color
 
 	std::vector<std::vector<std::tuple<int, int>>> m_AvailableMoves;  // Available moves for the piece
+
+	std::vector<std::vector<std::tuple<int, int>>> m_AffectedPower; // Cases affected by the power of this piece
 
 	//Life of the piece, if it drop to 0 or lower the piece die
 	int m_HP;

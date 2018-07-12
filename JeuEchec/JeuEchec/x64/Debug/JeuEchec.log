@@ -1,0 +1,23 @@
+﻿  Tour.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Roi.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Reine.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Pion.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Piece.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  main.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\main.cpp(1): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Game.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\game.h(5): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Fou.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Chevalier.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piece.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Case.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\case.h(4): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Board.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.h(5): fatal error C1083: Impossible d'ouvrir le fichier include : 'SDL.h' : No such file or directory
+  Génération de code en cours...

@@ -24,6 +24,9 @@ public:
 	/// <returns>All possibles attack for the pawn</returns>
 	virtual std::vector<std::vector<std::tuple<int, int>>> GetPossibleAttack() { return m_PossibleAttacks; }
 
+	//Make the piece use it's power
+	virtual void UsePower();
+
 private:
 	std::vector<std::vector<std::tuple<int, int>>> m_PossibleAttacks;   // Contains possible attacks for a pawn.
 };
