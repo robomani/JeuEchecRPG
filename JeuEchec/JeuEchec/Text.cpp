@@ -16,17 +16,17 @@ void Text::Init()
 		{
 			case ETextContent::PiecesStats:
 			{
-				m_Texts.push_back(new TextData("Les Stats de la piece selectionnee apparait ici", { 255, 0, 255 }, { 1000, 275, 100, 100 }));
+				m_Texts.push_back(new TextData("Les Stats de la piece selectionnee apparait ici", { 255, 0, 255 }, { 25, 25, 100, 100 }));
 				break;
 			}
 		case ETextContent::PiecesPower:
 			{
-				m_Texts.push_back(new TextData("Le powerup de la piece selectionnee apparait ici", { 255, 0, 255 }, { 1000, 300, 100, 100 }));
+				m_Texts.push_back(new TextData("Le powerup de la piece selectionnee apparait ici", { 255, 0, 255 }, { 25, 50, 100, 100 }));
 				break;
 			}
 		case ETextContent::PiecesPowerAvable:
 			{
-				m_Texts.push_back(new TextData("Powerup Ready / Already Used Appear Here", { 255, 0, 255 }, {1000, 325, 100, 100}));
+				m_Texts.push_back(new TextData("Powerup Ready", { 255, 0, 255 }, {1250, 25, 100, 100}));
 				break;
 			}
 		case ETextContent::Player01Mana:

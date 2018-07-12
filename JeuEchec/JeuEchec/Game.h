@@ -68,6 +68,7 @@ private:
 
 	SDL_Window* m_Window;	// The SDL window itself
 	SDL_Surface* m_WindowSurface;  // The surface of the SDL window
+	SDL_Surface* m_BackgroundSurface;  // The surface of the background
 
 	Board* m_Board;  // The instance of the board.
 

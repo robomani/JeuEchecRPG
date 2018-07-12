@@ -3,6 +3,8 @@
 Chevalier::Chevalier(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
 	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WKnight" : "images/BKnight", i_HP, i_Attack, i_Armor)
 {
+	Piece::m_PowerupDescr = "If a Ally around the Chevalier, You can Move The Ally At One Of The Possible Movement For The Chavalier.";
+
 	m_PieceType = Enums::EPieceType::Chevalier;
 	m_PieceColor = a_PieceColor;
 	

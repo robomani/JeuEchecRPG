@@ -1,3 +1,4 @@
+#include <SDL_image.h>
 #include "Game.h"
 #include "Board.h"
 #include "Player.h"
@@ -21,6 +22,12 @@ Game::~Game()
 		m_WindowSurface = nullptr;
 	}
 
+	if (m_BackgroundSurface != nullptr)
+	{
+		SDL_FreeSurface(m_BackgroundSurface);
+		m_BackgroundSurface = nullptr;
+	}
+
 	if (m_Window != nullptr)
 	{
 		SDL_DestroyWindow(m_Window);
@@ -42,6 +49,7 @@ void Game::Init()
 	// Init the SDL Window
 	m_Window = SDL_CreateWindow("Once upon a chess", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	m_WindowSurface = SDL_GetWindowSurface(m_Window);
+	m_BackgroundSurface = IMG_Load("./images/Background.jpg");
 
 	m_Board = new Board();
 
@@ -111,6 +119,7 @@ bool Game::Inputs()
 void Game::Draw()
 {
 	SDL_UpdateWindowSurface(m_Window);
+	SDL_BlitSurface(m_BackgroundSurface, NULL, m_WindowSurface, NULL);
 
 	m_Board->Draw(m_WindowSurface);
 

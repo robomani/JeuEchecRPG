@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "Case.h"
 #include "Game.h"
+#include "Text.h"
 #include "EPieceType.h"
 #include <SDL_image.h>
 
@@ -128,6 +129,14 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
 		Case* caseTargeted = m_Cases[i][j];
+		if (caseTargeted->IsNotEmpty())
+		{
+			Case* caseToShowUI = m_Cases[i][j];
+			std::string powerReadyText = caseToShowUI->IsPowerReady() ? "Power Ready" : "Power Not Ready";
+			Text::SetText(ETextContent::PiecesPower, caseToShowUI->GetPowerDescr());
+			Text::SetText(ETextContent::PiecesPowerAvable, powerReadyText);
+		}
+		
 		if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
 		{
 			m_CurrentCase = m_Cases[i][j];
@@ -148,7 +157,7 @@ void Board::MouseMotion(const int a_X, const int a_Y)
 
 void Board::ToogleUsingPower()
 {
-	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->GetPowerReady())
+	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady())
 	{
 		m_UsingPower = !m_UsingPower;
 	}

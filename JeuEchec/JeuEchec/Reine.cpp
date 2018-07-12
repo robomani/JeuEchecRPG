@@ -3,6 +3,8 @@
 Reine::Reine(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
 	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WQueen" : "images/BQueen", i_HP, i_Attack, i_Armor)
 {
+	Piece::m_PowerupDescr = "If The cases are empty, the queen spawn 3 Pion in front of her in a perpendicular line.";
+
 	m_PieceType = Enums::EPieceType::Reine;
 	m_PieceColor = a_PieceColor;
 
