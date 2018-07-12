@@ -75,6 +75,13 @@ public:
 	std::vector<std::tuple<int, int>> GetAvailableMoves(const std::vector<std::vector<Case*>>  a_Cases);
 	
 	/// <summary>
+	/// Gets the tiles affected by the power for the piece on this case.
+	/// </summary>
+	/// <param name="a_Cases">All cases of the board</param>
+	/// <returns>The list of tiles affected by the power of the piece on the case</returns>
+	std::vector<std::tuple<int, int>> GetAffectedPowerCases(const std::vector<std::vector<Case*>>  a_Cases);
+
+	/// <summary>
 	/// Gets the I of the case.
 	/// </summary>
 	/// <returns>The index I of the case</returns>
@@ -129,6 +136,21 @@ public:
 	/// Damage the piece on this tile and return if the piece is dead
 	/// </summary>
 	bool DamageCurrentPiece(int i_Damage) { return m_Piece->DamagePiece(i_Damage); }
+
+	/// <summary>
+	/// Damage the piece on this tile and return if the piece is dead
+	/// </summary>
+	bool GetPowerReady() { return m_Piece->GetPowerReady(); }
+
+	/// <summary>
+	/// Damage the piece on this tile and return if the piece is dead
+	/// </summary>
+	void UsePower() { m_Piece->UsePower(); }
+
+	/// <summary>
+	/// Damage the piece on this tile and return if the piece is dead
+	/// </summary>
+	Enums::EPieceType GetPieceType() { return m_Piece->GetType(); }
 
 private:
 	

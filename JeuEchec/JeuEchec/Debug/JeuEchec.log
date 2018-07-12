@@ -1,17 +1,5 @@
-﻿  Pion.cpp
-  Board.cpp
-  Génération de code en cours...
-  Compilation en cours...
-  Tour.cpp
-  Roi.cpp
-  Reine.cpp
-  PieceFactory.cpp
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piecefactory.h(13): warning C4091: 'static ' : ignoré à gauche de 'PieceFactory' quand aucune variable n'est déclarée
+﻿  Tour.cpp
   Piece.cpp
-  Fou.cpp
-  Chevalier.cpp
-  Case.cpp
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\piecefactory.h(13): warning C4091: 'static ' : ignoré à gauche de 'PieceFactory' quand aucune variable n'est déclarée
   Génération de code en cours...
   JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe
   JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.pdb (Partial PDB)

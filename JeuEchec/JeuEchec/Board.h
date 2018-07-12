@@ -58,6 +58,9 @@ public:
 	/// <param name="a_Y">The Y coordinate</param>
 	void MouseButtonUp(const int a_X, const int a_Y);
 
+	//Toggle if a piece is using it's power
+	void ToogleUsingPower();
+
 private:
 
 	const std::string BOARD_TEXTURE_PATH = "images/Board.png";  // The path of the board's texture.
@@ -67,11 +70,17 @@ private:
 	/// </summary>
 	void Init();
 
+	//Bool remembering if selected piece is using its power
+	bool m_UsingPower;
+
+	
+
 	SDL_Surface* m_BoardTexture;   // The SDL Surface that contain the texture loaded.
 	std::vector<std::vector<Case*>> m_Cases;  // All the cases of the board.
 	Case* m_CurrentCase;  // The current case clicked
 
 	std::vector<std::tuple<int, int>> m_AvailableMoveForCurrentPiece;  // Available moves for the piece clicked.
+	std::vector<std::tuple<int, int>> m_AffectedPowerForCurrentPiece;  // Cases affected by the power for the piece clicked.
 };
 
 #endif // __BOARD__

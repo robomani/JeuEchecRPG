@@ -50,6 +50,11 @@ public:
 	virtual std::vector<std::vector<std::tuple<int, int>>> GetPossibleAttack() { return m_AvailableMoves; } // Return the same as availableMoves. Only pawns have different move for attack.
 	
 	/// <summary>
+	/// Gets the Cases Affected by the power of this piece.
+	/// </summary>
+	std::vector<std::vector<std::tuple<int, int>>> GetAffectedPower() { return m_AffectedPower; }
+
+	/// <summary>
 	/// Gets the color.
 	/// </summary>
 	/// <returns>The piece color</returns>
@@ -111,6 +116,8 @@ protected:
 
 	std::vector<std::vector<std::tuple<int, int>>> m_AvailableMoves;  // Available moves for the piece
 
+	std::vector<std::vector<std::tuple<int, int>>> m_AffectedPower; // Cases affected by the power of this piece
+
 	//Life of the piece, if it drop to 0 or lower the piece die
 	int m_HP;
 	//Attack of the piece, when attacking reduce the HP of the piece being attacked by this amount minus defending piece armor
@@ -119,6 +126,8 @@ protected:
 	int m_Armor;
 	//If true the piece can use it's super power
 	bool m_PowerReady = true;
+
+
 
 private:	
 

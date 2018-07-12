@@ -26,7 +26,13 @@ Pion::Pion(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_
 		m_PossibleAttacks[Enums::EDirection::North_East].push_back(std::tuple<int, int>(1, 1));
 	}
 
-
+	m_AffectedPower[Enums::EDirection::East].push_back(std::tuple<int, int>(0, 1));
+	m_AffectedPower[Enums::EDirection::North_East].push_back(std::tuple<int, int>(1, 1));
+	m_AffectedPower[Enums::EDirection::North].push_back(std::tuple<int, int>(1, 0));
+	m_AffectedPower[Enums::EDirection::North_West].push_back(std::tuple<int, int>(1, -1));
+	m_AffectedPower[Enums::EDirection::West].push_back(std::tuple<int, int>(0, -1));
+	m_AffectedPower[Enums::EDirection::South_West].push_back(std::tuple<int, int>(-1, -1));
+	m_AffectedPower[Enums::EDirection::South].push_back(std::tuple<int, int>(-1, 0));
 }
 
 Pion::~Pion()

@@ -15,6 +15,7 @@ Piece::Piece(const std::string a_PieceTexturePath, int i_HP, int i_Attack, int i
 	for (int i = 0; i < Enums::EDirection::Direction_Count; i++)
 	{
 		m_AvailableMoves.push_back(std::vector<std::tuple<int, int>>());
+		m_AffectedPower.push_back(std::vector<std::tuple<int, int>>());
 	}
 
 	Init();
