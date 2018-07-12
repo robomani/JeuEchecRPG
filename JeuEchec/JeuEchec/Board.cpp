@@ -124,12 +124,15 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	int i = (a_Y - Y_OFFSET) / Board::CASE_WIDTH;
 	int j = (a_X - X_OFFSET) / Board::CASE_HEIGHT;
 
-	Case* caseTargeted = m_Cases[i][j];
-	if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
+	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
-		m_CurrentCase = m_Cases[i][j];
-		m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
-		m_CurrentCase->Move(a_X, a_Y);
+		Case* caseTargeted = m_Cases[i][j];
+		if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
+		{
+			m_CurrentCase = m_Cases[i][j];
+			m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
+			m_CurrentCase->Move(a_X, a_Y);
+		}
 	}
 }
 
@@ -147,24 +150,25 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 	{
 		int i = (a_Y - Y_OFFSET) / Board::CASE_WIDTH;
 		int j = (a_X - X_OFFSET) / Board::CASE_HEIGHT;
-
-		Case* caseTargeted = m_Cases[i][j];
-		if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
+		if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 		{
-			// The targeted case is empty
-			if (caseTargeted->IsEmpty())
+			Case* caseTargeted = m_Cases[i][j];
+			if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
 			{
-				caseTargeted->SwapPieceWith(m_CurrentCase);
-				Game::ChangeColorTurn();
-			}
-			else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
-			{
-				caseTargeted->SwapPieceWith(m_CurrentCase);
-				m_CurrentCase->RemovePiece();
-				Game::ChangeColorTurn();
+				// The targeted case is empty
+				if (caseTargeted->IsEmpty())
+				{
+					caseTargeted->SwapPieceWith(m_CurrentCase);
+					Game::ChangeColorTurn();
+				}
+				else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
+				{
+					caseTargeted->SwapPieceWith(m_CurrentCase);
+					m_CurrentCase->RemovePiece();
+					Game::ChangeColorTurn();
+				}
 			}
 		}
-
 
 		m_CurrentCase->BackToOriginalPosition();
 		m_CurrentCase = nullptr;
