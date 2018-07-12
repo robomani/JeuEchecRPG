@@ -127,7 +127,8 @@ protected:
 	//If true the piece can use it's super power
 	bool m_PowerReady = true;
 
-
+	//String That describe The Piece Power
+	std::string m_PowerDescription;
 
 private:	
 
