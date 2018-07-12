@@ -1,5 +1,7 @@
-﻿  Tour.cpp
-  Piece.cpp
+﻿  Game.cpp
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(76): warning C4091: 'static ' : ignoré à gauche de 'Text::TextData' quand aucune variable n'est déclarée
+d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\text.h(81): warning C4091: 'static ' : ignoré à gauche de 'Text' quand aucune variable n'est déclarée
+  Board.cpp
   Génération de code en cours...
   JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe
   JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.pdb (Partial PDB)

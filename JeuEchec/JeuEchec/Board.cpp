@@ -4,6 +4,7 @@
 #include "EPieceType.h"
 #include <SDL_image.h>
 
+
 const int Board::CASE_NUMBER = 8;
 const int Board::CASE_WIDTH = 100;
 const int Board::CASE_HEIGHT = 100;
@@ -148,9 +149,10 @@ void Board::MouseMotion(const int a_X, const int a_Y)
 
 void Board::ToogleUsingPower()
 {
-	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->GetPowerReady())
-	{
-		m_UsingPower = !m_UsingPower;
+
+	if (m_UsingPower || (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->GetPowerReady()))
+	{	
+     		m_UsingPower = !m_UsingPower;
 	}
 }
 

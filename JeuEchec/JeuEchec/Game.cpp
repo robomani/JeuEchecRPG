@@ -71,6 +71,17 @@ bool Game::Inputs()
 			{
 				return true;
 			}
+			case SDL_SCANCODE_SPACE:
+			{
+				m_Board->ToogleUsingPower();
+				break;
+			}
+			case SDL_KEYDOWN:
+				switch (e.key.keysym.sym)
+				{
+				case SDLK_SPACE:
+					m_Board->ToogleUsingPower();
+				}
 			case SDL_MOUSEBUTTONDOWN:
 			{
 				int x = 0;
@@ -95,11 +106,7 @@ bool Game::Inputs()
 				m_Board->MouseButtonUp(x, y);
 				break;
 			}
-			case SDLK_SPACE:
-			{
-				m_Board->ToogleUsingPower();
-				break;
-			}
+			
 			default:
 				break;
 		}
