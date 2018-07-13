@@ -33,6 +33,11 @@ public:
 	void Draw(SDL_Surface* a_Parent);
 	
 	/// <summary>
+	/// Call Change Turn On Tiles.
+	/// </summary>
+	void ChangeTurn();
+
+	/// <summary>
 	/// Updates this instance.
 	/// </summary>
 	void Update();

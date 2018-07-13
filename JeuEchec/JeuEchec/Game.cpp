@@ -6,6 +6,7 @@
 #include <iostream>
 
 Enums::EPieceColor Game::m_ColorTurn = Enums::EPieceColor::Blanche;
+Enums::EPieceColor Game::m_ChangeTurnToColor = Enums::EPieceColor::Blanche;
 const int Game::SCREEN_WIDTH = 1500;
 const int Game::SCREEN_HEIGHT = 1000;
 
@@ -56,6 +57,12 @@ void Game::Init()
 	m_Player01 = new Player();
 	m_Player02 = new Player();
 }
+
+void Game::ChangeColorTurn() 
+{ 
+	m_ChangeTurnToColor = static_cast<Enums::EPieceColor>(!static_cast<bool>(m_ColorTurn));
+}
+
 
 void Game::Run()
 {
@@ -128,5 +135,10 @@ void Game::Draw()
 
 void Game::Update()
 {
+	if (m_ChangeTurnToColor != m_ColorTurn)
+	{
+		m_ColorTurn = m_ChangeTurnToColor;
+		m_ColorTurn == Enums::EPieceColor::Blanche ? m_Player01->ChangeManaBy(1) : m_Player02->ChangeManaBy(1);
+	}
 	m_Board->Update();
 }

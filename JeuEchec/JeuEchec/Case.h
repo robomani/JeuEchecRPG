@@ -162,6 +162,24 @@ public:
 	/// </returns>
 	bool IsPowerReady() { return m_Piece->IsPowerReady(); }
 
+	/// <summary>
+	/// Gets the HP of the piece on this tile
+	/// </summary>
+	/// <returns>The HP of the piece on this tile</returns>
+	int GetHP() { return m_Piece->GetHP(); }
+
+	/// <summary>
+	/// Gets the Attack of the piece on this tile
+	/// </summary>
+	/// <returns>The Attack of the piece on this tile</returns>
+	int GetAttack() { return m_Piece->GetAttack(); }
+
+	/// <summary>
+	/// Gets the Armor of the piece on this tile
+	/// </summary>
+	/// <returns>The Armor of the piece on this tile</returns>
+	int GetArmor() { return m_Piece->GetArmor(); }
+
 private:
 	
 	/// <summary>

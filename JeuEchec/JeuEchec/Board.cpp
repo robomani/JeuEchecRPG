@@ -116,6 +116,12 @@ void Board::Draw(SDL_Surface* a_Parent)
 	}
 }
 
+void Board::ChangeTurn()
+{
+
+}
+
+
 void Board::Update()
 {
 
@@ -133,6 +139,8 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 		{
 			Case* caseToShowUI = m_Cases[i][j];
 			std::string powerReadyText = caseToShowUI->IsPowerReady() ? "Power Ready" : "Power Not Ready";
+
+			Text::SetText(ETextContent::PiecesStats, caseToShowUI->GetHP(), caseToShowUI->GetAttack(), caseToShowUI->GetArmor());
 			Text::SetText(ETextContent::PiecesPower, caseToShowUI->GetPowerDescr());
 			Text::SetText(ETextContent::PiecesPowerAvable, powerReadyText);
 		}
