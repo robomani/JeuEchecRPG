@@ -11,6 +11,9 @@ const int Board::CASE_HEIGHT = 100;
 const int Board::X_OFFSET = 100;
 const int Board::Y_OFFSET = 100;
 
+int tempx;
+int tempy;
+
 Board::Board()
 	: m_CurrentCase(nullptr)
 {
@@ -129,11 +132,13 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
 		Case* caseTargeted = m_Cases[i][j];
+		tempx = i;
+		tempy = j;
 		if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
 		{
 			m_CurrentCase = m_Cases[i][j];
 			m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
-			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
+			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAffectedPowerCases(m_Cases);
 			m_CurrentCase->Move(a_X, a_Y);
 		}
 	}
@@ -193,33 +198,83 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 			}
 			else
 			{
-				if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+				switch (m_CurrentCase->GetPieceType())
 				{
-					
-					switch (m_CurrentCase->GetPieceType())
-					{
-					case Enums::EPieceType::Pion:
+				case Enums::EPieceType::Pion:
 
-						break;
-					case Enums::EPieceType::Chevalier:
-						break;
-					case Enums::EPieceType::Tour:
-						break;
-					case Enums::EPieceType::Fou:
-						break;
-					case Enums::EPieceType::Reine:
-						break;
-					case Enums::EPieceType::Roi:
-						break;
-					default:
-						break;
+					if (m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy - 1,0,7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx-1][y-1]->RemovePiece();
+						m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy - 1,0,7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
 					}
-					m_CurrentCase->UsePower();
+					if (m_Cases[clamp(tempx + 1, 0, 7)][tempy]->IsNotEmpty())
+					{
+						//m_Cases[tempx-1][y]->RemovePiece();
+						m_Cases[clamp(tempx + 1, 0, 7)][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx-1][y+1]->RemovePiece();
+						m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[tempx][clamp(tempy - 1, 0, 7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx][y+1]->RemovePiece();
+						m_Cases[tempx][clamp(tempy - 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[tempx][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx][y]->RemovePiece();
+						m_Cases[tempx][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy - 1, 0, 7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx][tempy]->RemovePiece();
+						m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy - 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[clamp(tempx - 1, 0, 7)][tempy]->IsNotEmpty())
+					{
+						//m_Cases[tempx][y]->RemovePiece();
+						m_Cases[clamp(tempx - 1, 0, 7)][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					{
+						//m_Cases[tempx][y]->RemovePiece();
+						m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+					if (m_Cases[tempx][tempy]->IsNotEmpty())
+					{
+						//m_Cases[tempx][tempy]->RemovePiece();
+						m_Cases[tempx][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+					}
+
+					m_CurrentCase->RemovePiece();
+					break;
+				case Enums::EPieceType::Chevalier:
+					break;
+				case Enums::EPieceType::Tour:
+					break;
+				case Enums::EPieceType::Fou:
+					break;
+				case Enums::EPieceType::Reine:
+					break;
+				case Enums::EPieceType::Roi:
+					break;
+				default:
+					break;
+				
 				}
+				Game::ChangeColorTurn();
 			}
 		}
 
 		m_CurrentCase->BackToOriginalPosition();
 		m_CurrentCase = nullptr;
 	}
+}
+
+template<class T>
+constexpr const T& clamp(const T& v, const T& lo, const T& hi)
+{
+	return clamp(v, lo, hi, std::less<>());
 }

@@ -28,6 +28,7 @@ Chevalier::Chevalier(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Atta
 	m_AffectedPower[Enums::EDirection::West].push_back(std::tuple<int, int>(0, -1));
 	m_AffectedPower[Enums::EDirection::South_West].push_back(std::tuple<int, int>(-1, -1));
 	m_AffectedPower[Enums::EDirection::South].push_back(std::tuple<int, int>(-1, 0));
+	m_AffectedPower[Enums::EDirection::South_East].push_back(std::tuple<int, int>(-1, 1));
 }
 
 Chevalier::~Chevalier()

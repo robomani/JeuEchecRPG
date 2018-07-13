@@ -12,6 +12,7 @@ enum ETextContent
 	PlayerPower03 = 7, //The Player Power Three Text.
 	PlayerPower04 = 8, //The Player Power Four Text.
 	PlayerPower05 = 9, //The Player Power Five Text.
+	UsingPowerMode = 10, //Saying if the game is in UsingPower mode for the piece held
 	
 	Count
 };
