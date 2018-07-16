@@ -1,33 +1,3 @@
 ﻿  Board.cpp
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(205): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(205): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(208): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(208): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(210): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(210): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(213): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(213): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(215): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(215): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(218): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(218): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(220): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(220): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(223): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(223): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(225): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(225): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(228): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(228): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(230): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(230): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(233): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(233): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(235): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(235): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(238): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(238): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(240): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(240): error C2227: la partie gauche de '->IsNotEmpty' doit pointer vers un type class/struct/union/générique
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(243): error C3861: 'clamp' : identificateur introuvable
-d:\users\1810078\desktop\jeuechecrpg\jeuechec\jeuechec\board.cpp(243): error C2227: la partie gauche de '->DamageCurrentPiece' doit pointer vers un type class/struct/union/générique
+  JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.exe
+  JeuEchec.vcxproj -> D:\Users\1810078\Desktop\JeuEchecRPG\JeuEchec\Debug\JeuEchec.pdb (Partial PDB)

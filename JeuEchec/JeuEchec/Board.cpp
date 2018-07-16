@@ -14,6 +14,8 @@ const int Board::Y_OFFSET = 100;
 int tempx;
 int tempy;
 
+bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max);
+
 Board::Board()
 	: m_CurrentCase(nullptr)
 {
@@ -202,53 +204,71 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 				{
 				case Enums::EPieceType::Pion:
 
-					if (m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy - 1,0,7)]->IsNotEmpty())
+					if (IsBetween(tempx + 1,0,7) && IsBetween(tempy - 1,0,7) && m_Cases[tempx + 1][tempy - 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx-1][y-1]->RemovePiece();
-						m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy - 1,0,7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx + 1][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy - 1]->RemovePiece();
+						}
 					}
-					if (m_Cases[clamp(tempx + 1, 0, 7)][tempy]->IsNotEmpty())
+					if (IsBetween(tempx + 1, 0, 7) && m_Cases[tempx + 1][tempy]->IsNotEmpty())
 					{
-						//m_Cases[tempx-1][y]->RemovePiece();
-						m_Cases[clamp(tempx + 1, 0, 7)][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx + 1][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy]->RemovePiece();
+						}
 					}
-					if (m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					if (IsBetween(tempx + 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx + 1][tempy + 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx-1][y+1]->RemovePiece();
-						m_Cases[clamp(tempx + 1, 0, 7)][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx + 1][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy + 1]->RemovePiece();
+						}
 					}
-					if (m_Cases[tempx][clamp(tempy - 1, 0, 7)]->IsNotEmpty())
+					if (IsBetween(tempy - 1, 0, 7) && m_Cases[tempx][tempy - 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx][y+1]->RemovePiece();
-						m_Cases[tempx][clamp(tempy - 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx][tempy - 1]->RemovePiece();
+						}
 					}
-					if (m_Cases[tempx][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					if (IsBetween(tempy + 1, 0, 7) && m_Cases[tempx][tempy + 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx][y]->RemovePiece();
-						m_Cases[tempx][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx][tempy + 1]->RemovePiece();
+						}
 					}
-					if (m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy - 1, 0, 7)]->IsNotEmpty())
+					if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy - 1, 0, 7) && m_Cases[tempx - 1][tempy - 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx][tempy]->RemovePiece();
-						m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy - 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx - 1][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy - 1]->RemovePiece();
+						}
 					}
-					if (m_Cases[clamp(tempx - 1, 0, 7)][tempy]->IsNotEmpty())
+					if (IsBetween(tempx - 1, 0, 7) && m_Cases[tempx - 1][tempy]->IsNotEmpty())
 					{
-						//m_Cases[tempx][y]->RemovePiece();
-						m_Cases[clamp(tempx - 1, 0, 7)][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx - 1][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy]->RemovePiece();
+						}	
 					}
-					if (m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy + 1, 0, 7)]->IsNotEmpty())
+					if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx - 1][tempy + 1]->IsNotEmpty())
 					{
-						//m_Cases[tempx][y]->RemovePiece();
-						m_Cases[clamp(tempx - 1, 0, 7)][clamp(tempy + 1, 0, 7)]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx - 1][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy + 1]->RemovePiece();
+						}
+						
 					}
 					if (m_Cases[tempx][tempy]->IsNotEmpty())
 					{
-						//m_Cases[tempx][tempy]->RemovePiece();
-						m_Cases[tempx][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack());
+						if (m_Cases[tempx][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_CurrentCase->RemovePiece();
+						}
+						
 					}
-
-					m_CurrentCase->RemovePiece();
 					break;
 				case Enums::EPieceType::Chevalier:
 					break;
@@ -271,10 +291,18 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 		m_CurrentCase->BackToOriginalPosition();
 		m_CurrentCase = nullptr;
 	}
+
+	
 }
 
-template<class T>
-constexpr const T& clamp(const T& v, const T& lo, const T& hi)
+bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max)
 {
-	return clamp(v, lo, hi, std::less<>());
+	if (i_Value >= i_Min && i_Value <= i_Max)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
