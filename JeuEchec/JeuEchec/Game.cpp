@@ -115,6 +115,41 @@ bool Game::Inputs()
 				m_Board->ToogleUsingPower();
 				break;
 			}
+			case SDLK_1:
+			{
+				
+				if(GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 1)
+				{
+					m_Player01->ChangeManaBy(-1);
+					ChangeColorTurn();
+				}
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 1)
+				{
+					m_Player02->ChangeManaBy(-1);
+					ChangeColorTurn();
+				}
+				break;
+			}			
+			case SDLK_2:
+			{
+				
+				break;
+			}
+			case SDLK_3:
+			{
+				
+				break;
+			}
+			case SDLK_4:
+			{
+				
+				break;
+			}
+			case SDLK_5:
+			{
+				
+				break;
+			}
 			default:
 				break;
 		}
@@ -138,7 +173,19 @@ void Game::Update()
 	if (m_ChangeTurnToColor != m_ColorTurn)
 	{
 		m_ColorTurn = m_ChangeTurnToColor;
-		m_ColorTurn == Enums::EPieceColor::Blanche ? m_Player01->ChangeManaBy(1) : m_Player02->ChangeManaBy(1);
+
+		if (m_ColorTurn == Enums::EPieceColor::Blanche)
+		{
+			m_Player01->ChangeManaBy(1);
+			Text::SetText(ETextContent::Player01Mana, "Mana: " + std::to_string(m_Player01->GetMana()));
+			m_Player01->ChangePowerTexts();
+		}
+		else
+		{
+			m_Player02->ChangeManaBy(1);
+			Text::SetText(ETextContent::Player02Mana, "Mana: " + std::to_string(m_Player02->GetMana()));
+			m_Player02->ChangePowerTexts();
+		}
 	}
 	m_Board->Update();
 }
