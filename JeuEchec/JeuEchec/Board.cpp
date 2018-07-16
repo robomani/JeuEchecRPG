@@ -51,6 +51,7 @@ Board::~Board()
 void Board::Init()
 {
 	m_BoardTexture = IMG_Load(BOARD_TEXTURE_PATH.c_str());
+	Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");
 
 	// Create all cases
 	m_Cases = std::vector<std::vector<Case*>>();
@@ -177,10 +178,6 @@ void Board::ToogleUsingPower()
 	{
 		m_UsingPower = !m_UsingPower;
 	}
-	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady())
-	{
-		m_UsingPower = !m_UsingPower;
-	}
 
 	if (m_UsingPower)
 	{
@@ -190,6 +187,12 @@ void Board::ToogleUsingPower()
 	{
 		Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");
 	}
+}
+
+void Board::ResetUsingPower()
+{
+	 m_UsingPower = false; 
+	Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");	 
 }
 
 void Board::MouseButtonUp(const int a_X, const int a_Y)

@@ -66,6 +66,8 @@ public:
 	//Toggle if a piece is using it's power
 	void ToogleUsingPower();
 
+	void ResetUsingPower();
+
 private:
 
 	const std::string BOARD_TEXTURE_PATH = "images/Board.png";  // The path of the board's texture.

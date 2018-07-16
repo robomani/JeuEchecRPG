@@ -140,8 +140,10 @@ void Game::Update()
 {
 	if (m_ChangeTurnToColor != m_ColorTurn)
 	{
+		m_Board->ResetUsingPower();
 		m_ColorTurn = m_ChangeTurnToColor;
 		m_ColorTurn == Enums::EPieceColor::Blanche ? m_Player01->ChangeManaBy(1) : m_Player02->ChangeManaBy(1);
 	}
+	
 	m_Board->Update();
 }
