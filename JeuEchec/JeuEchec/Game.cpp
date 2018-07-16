@@ -1,3 +1,4 @@
+#include <SDL_image.h>
 #include "Game.h"
 #include "Board.h"
 #include "Player.h"
@@ -5,6 +6,7 @@
 #include <iostream>
 
 Enums::EPieceColor Game::m_ColorTurn = Enums::EPieceColor::Blanche;
+Enums::EPieceColor Game::m_ChangeTurnToColor = Enums::EPieceColor::Blanche;
 const int Game::SCREEN_WIDTH = 1500;
 const int Game::SCREEN_HEIGHT = 1000;
 
@@ -19,6 +21,12 @@ Game::~Game()
 	{
 		SDL_FreeSurface(m_WindowSurface);
 		m_WindowSurface = nullptr;
+	}
+
+	if (m_BackgroundSurface != nullptr)
+	{
+		SDL_FreeSurface(m_BackgroundSurface);
+		m_BackgroundSurface = nullptr;
 	}
 
 	if (m_Window != nullptr)
@@ -42,12 +50,19 @@ void Game::Init()
 	// Init the SDL Window
 	m_Window = SDL_CreateWindow("Once upon a chess", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	m_WindowSurface = SDL_GetWindowSurface(m_Window);
+	m_BackgroundSurface = IMG_Load("./images/Background.jpg");
 
 	m_Board = new Board();
 
 	m_Player01 = new Player();
 	m_Player02 = new Player();
 }
+
+void Game::ChangeColorTurn() 
+{ 
+	m_ChangeTurnToColor = static_cast<Enums::EPieceColor>(!static_cast<bool>(m_ColorTurn));
+}
+
 
 void Game::Run()
 {
@@ -118,6 +133,7 @@ bool Game::Inputs()
 void Game::Draw()
 {
 	SDL_UpdateWindowSurface(m_Window);
+	SDL_BlitSurface(m_BackgroundSurface, NULL, m_WindowSurface, NULL);
 
 	m_Board->Draw(m_WindowSurface);
 
@@ -126,5 +142,10 @@ void Game::Draw()
 
 void Game::Update()
 {
+	if (m_ChangeTurnToColor != m_ColorTurn)
+	{
+		m_ColorTurn = m_ChangeTurnToColor;
+		m_ColorTurn == Enums::EPieceColor::Blanche ? m_Player01->ChangeManaBy(1) : m_Player02->ChangeManaBy(1);
+	}
 	m_Board->Update();
 }

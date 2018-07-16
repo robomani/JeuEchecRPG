@@ -4,6 +4,9 @@
 Pion::Pion(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
 	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WPawn" : "images/BPawn", i_HP, i_Attack, i_Armor)
 {
+	Piece::m_PowerupDescr = "KAMIKAZE! The Pion can kill himself to inflict 3 Damage at envoryone around the Pion.";
+
+
 	m_PieceType = Enums::EPieceType::Pion;
 	m_PieceColor = a_PieceColor;
 

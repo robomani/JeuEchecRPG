@@ -2,6 +2,8 @@
 #define __FOU__
 
 #include "Piece.h"
+#include <string>
+
 class Fou :
 	public Piece
 {

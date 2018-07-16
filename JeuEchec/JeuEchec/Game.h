@@ -28,9 +28,9 @@ public:
 	void Run();
 	
 	/// <summary>
-	/// Changes the color turn. 
+	/// Changes the color turn and Call ChangeTurn on the board.
 	/// </summary>
-	static void ChangeColorTurn() { m_ColorTurn = static_cast<Enums::EPieceColor>(!static_cast<bool>(m_ColorTurn)); }
+	static void ChangeColorTurn();
 	
 	/// <summary>
 	/// Gets the color turn.
@@ -68,11 +68,14 @@ private:
 
 	SDL_Window* m_Window;	// The SDL window itself
 	SDL_Surface* m_WindowSurface;  // The surface of the SDL window
+	SDL_Surface* m_BackgroundSurface;  // The surface of the background
 
 	Board* m_Board;  // The instance of the board.
 
 	Player* m_Player01; //The instance of the player01.
 	Player* m_Player02; //The instance of the player02.
+
+	static Enums::EPieceColor m_ChangeTurnToColor;
 };
 
 #endif // __GAME__

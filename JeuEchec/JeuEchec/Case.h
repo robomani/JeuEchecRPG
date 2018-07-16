@@ -140,17 +140,45 @@ public:
 	/// <summary>
 	/// Damage the piece on this tile and return if the piece is dead
 	/// </summary>
-	bool GetPowerReady() { return m_Piece->GetPowerReady(); }
-
-	/// <summary>
-	/// Damage the piece on this tile and return if the piece is dead
-	/// </summary>
 	void UsePower() { m_Piece->UsePower(); }
 
 	/// <summary>
 	/// Damage the piece on this tile and return if the piece is dead
 	/// </summary>
 	Enums::EPieceType GetPieceType() { return m_Piece->GetType(); }
+
+	/// <summary>
+	/// Get the Power Description of piece on this tile
+	/// </summary>
+	/// <returns>The Power Description of piece on this tile</returns>
+	std::string GetPowerDescr() { return m_Piece->GetPiecePowerDescr(); }
+
+	/// <summary>
+	/// Get if the power of the piece on this tile is ready to be used.
+	/// </summary>
+	/// <param name="a_Color">a color.</param>
+	/// <returns>
+	///   <c>true</c> If the power of the piece on this tile is ready to be used.; otherwise, <c>false</c>.
+	/// </returns>
+	bool IsPowerReady() { return m_Piece->IsPowerReady(); }
+
+	/// <summary>
+	/// Gets the HP of the piece on this tile
+	/// </summary>
+	/// <returns>The HP of the piece on this tile</returns>
+	int GetHP() { return m_Piece->GetHP(); }
+
+	/// <summary>
+	/// Gets the Attack of the piece on this tile
+	/// </summary>
+	/// <returns>The Attack of the piece on this tile</returns>
+	int GetAttack() { return m_Piece->GetAttack(); }
+
+	/// <summary>
+	/// Gets the Armor of the piece on this tile
+	/// </summary>
+	/// <returns>The Armor of the piece on this tile</returns>
+	int GetArmor() { return m_Piece->GetArmor(); }
 
 private:
 	

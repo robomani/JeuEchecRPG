@@ -84,14 +84,38 @@ public:
 	/// </returns>
 	bool IsNotThisColor(Enums::EPieceColor a_Color) { return !IsThisColor(a_Color); }
 
-	//Return if the piece can use its power
-	bool GetPowerReady() { return m_PowerReady; }
-	//Return the HP of the peice
+	/// <summary>
+	/// Gets the HP of the piece
+	/// </summary>
+	/// <returns>The HP of the piece</returns>
 	int GetHP() { return m_HP; }
-	//Return the Attack of the peice
+
+	/// <summary>
+	/// Gets the Attack of the piece
+	/// </summary>
+	/// <returns>The Attack of the piece</returns>
 	int GetAttack() { return m_Attack; }
-	//Return the Armor of the peice
+
+	/// <summary>
+	/// Gets the Armor of the piece
+	/// </summary>
+	/// <returns>The Armor of the piece</returns>
 	int GetArmor() { return m_Armor; }
+
+	/// <summary>
+	/// Gets the piece Powerup Description
+	/// </summary>
+	/// <returns>The piece Powerup Description</returns>
+	std::string GetPiecePowerDescr() { return m_PowerupDescr; }
+
+	/// <summary>
+	/// Get if the power of the piece is ready to be used.
+	/// </summary>
+	/// <param name="a_Color">a color.</param>
+	/// <returns>
+	///   <c>true</c> If the power of the piece is ready to be used.; otherwise, <c>false</c>.
+	/// </returns>
+	bool IsPowerReady() { return m_PowerReady; }
 
 	//Fonction to damage the peice. If the peice die it return true esle it return false
 	bool DamagePiece(int i_Damage) { return (m_HP -= (i_Damage - m_Armor)) > 0 ?  false : true; }
@@ -128,7 +152,7 @@ protected:
 	bool m_PowerReady = true;
 
 	//String That describe The Piece Power
-	std::string m_PowerDescription;
+	std::string m_PowerupDescr;
 
 private:	
 
