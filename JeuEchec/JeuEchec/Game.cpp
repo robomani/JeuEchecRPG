@@ -85,18 +85,14 @@ bool Game::Inputs()
 			case SDL_QUIT:
 			{
 				return true;
-			}
-			case SDL_SCANCODE_SPACE:
-			{
-				m_Board->ToogleUsingPower();
-				break;
-			}
+			}	
 			case SDL_KEYDOWN:
 				switch (e.key.keysym.sym)
 				{
 				case SDLK_SPACE:
 					m_Board->ToogleUsingPower();
 				}
+				
 			case SDL_MOUSEBUTTONDOWN:
 			{
 				int x = 0;

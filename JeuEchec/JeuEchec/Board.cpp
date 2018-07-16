@@ -141,10 +141,8 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
 		Case* caseTargeted = m_Cases[i][j];
-<<<<<<< HEAD
 		tempx = i;
 		tempy = j;
-=======
 		if (caseTargeted->IsNotEmpty())
 		{
 			Case* caseToShowUI = m_Cases[i][j];
@@ -154,8 +152,7 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 			Text::SetText(ETextContent::PiecesPower, caseToShowUI->GetPowerDescr());
 			Text::SetText(ETextContent::PiecesPowerAvable, powerReadyText);
 		}
-		
->>>>>>> remotes/origin/master
+
 		if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
 		{
 			m_CurrentCase = m_Cases[i][j];
@@ -176,16 +173,22 @@ void Board::MouseMotion(const int a_X, const int a_Y)
 
 void Board::ToogleUsingPower()
 {
-<<<<<<< HEAD
-
-	if (m_UsingPower || (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->GetPowerReady()))
-	{	
-     		m_UsingPower = !m_UsingPower;
-=======
+	if (m_UsingPower || (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady()))
+	{
+		m_UsingPower = !m_UsingPower;
+	}
 	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady())
 	{
 		m_UsingPower = !m_UsingPower;
->>>>>>> remotes/origin/master
+	}
+
+	if (m_UsingPower)
+	{
+		Text::SetText(ETextContent::UsingPowerMode, "Using Power");
+	}
+	else
+	{
+		Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");
 	}
 }
 
