@@ -142,10 +142,11 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
 		Case* caseTargeted = m_Cases[i][j];
-		tempx = i;
-		tempy = j;
+
 		if (caseTargeted->IsNotEmpty())
 		{
+			tempx = i;
+			tempy = j;
 			Case* caseToShowUI = m_Cases[i][j];
 			std::string powerReadyText = caseToShowUI->IsPowerReady() ? "Power Ready" : "Power Not Ready";
 
@@ -295,12 +296,14 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 					}
 					if (m_Cases[tempx][tempy]->IsNotEmpty())
 					{
+						m_CurrentCase->UsePower();
 						if (m_Cases[tempx][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
 						{
 							m_CurrentCase->RemovePiece();
 						}
 						
 					}
+
 					break;
 				case Enums::EPieceType::Chevalier:
 					break;
@@ -311,12 +314,32 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 				case Enums::EPieceType::Reine:
 					break;
 				case Enums::EPieceType::Roi:
+					if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+					{
+						// The targeted case is empty
+						if (caseTargeted->IsEmpty())
+						{
+
+						}
+						else if (caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
+						{
+							m_CurrentCase->UsePower();
+							m_CurrentCase->EatPiece(caseTargeted->GetHP(), caseTargeted->GetAttack(), caseTargeted->GetArmor(), caseTargeted->IsPowerReady());
+							caseTargeted->SwapPieceWith(m_CurrentCase);
+							m_CurrentCase->RemovePiece();
+							Game::ChangeColorTurn();
+						}
+					}
+					else
+					{
+						
+					}
 					break;
 				default:
 					break;
 				
 				}
-				Game::ChangeColorTurn();
+				//Game::ChangeColorTurn();
 			}
 		}
 

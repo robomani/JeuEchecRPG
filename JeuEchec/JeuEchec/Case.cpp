@@ -158,14 +158,7 @@ std::vector<std::tuple<int, int>> Case::GetAffectedPowerCases(const std::vector<
 			int j = std::get<1>(*iter);
 			if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 			{
-				if (a_Cases[i][j]->IsEmpty())
-				{
 					affectedCases.push_back(*iter);
-				}
-				else if (m_Piece->GetType() != Enums::EPieceType::Chevalier) // the only piece to jump over other pieces is the knight.
-				{
-					break;
-				}
 			}
 		}
 	}

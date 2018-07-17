@@ -180,6 +180,11 @@ public:
 	/// <returns>The Armor of the piece on this tile</returns>
 	int GetArmor() { return m_Piece->GetArmor(); }
 
+	/// <summary>
+	/// Appele la fonction EatPiece
+	/// </summary>
+	void EatPiece(int i_HP, int i_Attack, int i_Armor, bool i_Power) { m_Piece->EatPiece( i_HP,  i_Attack,  i_Armor, i_Power); }
+
 private:
 	
 	/// <summary>

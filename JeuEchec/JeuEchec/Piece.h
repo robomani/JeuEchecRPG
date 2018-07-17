@@ -125,6 +125,9 @@ public:
 	virtual void UsePower() { m_PowerReady = false; }
 	//Boost the Piece by selected amount
 	void BoostPiece(int i_Boost) { m_Attack += i_Boost; m_HP += i_Boost; }
+
+	//Pouvoir de manger une piece
+	virtual void EatPiece(int i_HP, int i_Attack, int i_Armor, bool i_Power) {}
 	
 protected:
 	
