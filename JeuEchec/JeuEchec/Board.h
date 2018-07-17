@@ -27,6 +27,12 @@ public:
 	~Board();
 	
 	/// <summary>
+	/// Get The Current Selected Case.
+	/// </summary>
+	/// <returns>The current case selected.</returns>
+	Case* GetCurrentCase() { return m_CurrentCase; }  // The current case clicked
+
+	/// <summary>
 	/// Draws all the cases on the board.
 	/// </summary>
 	/// <param name="a_Parent">The SDL Surface where to draw</param>

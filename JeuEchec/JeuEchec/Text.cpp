@@ -64,6 +64,11 @@ void Text::Init()
 				m_Texts.push_back(new TextData("Cost 25: Nuke, AKA Win The Game!", { 255, 0, 0 }, { 1000, 900, 100, 100 }));
 				break;
 			}
+		case ETextContent::UsingPowerMode:
+		{
+			m_Texts.push_back(new TextData("Saying if the player is Using Power for the piece he hold", { 255, 0, 0 }, { 1000, 350, 100, 100 }));
+			break;
+		}
 		}
 	}
 }

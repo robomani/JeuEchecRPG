@@ -180,6 +180,14 @@ public:
 	/// <returns>The Armor of the piece on this tile</returns>
 	int GetArmor() { return m_Piece->GetArmor(); }
 
+	//Boost the Piece on this tile by selected amount
+	void BoostCurrentPiece(int i_Boost) { m_Piece->BoostPiece(i_Boost); }
+
+	/// <summary>
+	/// Reset the Power for the Current Piece on this tile.
+	/// </summary>
+	void ResetCurrentPower() { m_Piece->ResetPower(); }
+
 private:
 	
 	/// <summary>

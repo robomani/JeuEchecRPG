@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "Text.h"
+#include "Case.h"
+#include "Game.h"
 
 Player::Player()
 {
@@ -30,19 +32,37 @@ void Player::ChangePowerTexts()
 
 void Player::Power01(Board& a_Board)
 {
+	if (a_Board.GetCurrentCase() != nullptr)
+	{
+		return;
+	}
 
+	ChangeManaBy(-1);
+	Game::ChangeColorTurn();
 }
 
 
 void Player::Power02(Board& a_Board)
 {
+	Case* currentCase = a_Board.GetCurrentCase();
 
+	if (currentCase->IsNotEmpty() && !currentCase->IsPowerReady())
+	{
+		ChangeManaBy(-2);
+		currentCase->ResetCurrentPower();
+	}
 }
 
 
 void Player::Power03(Board& a_Board)
 {
+	Case* currentCase = a_Board.GetCurrentCase();
 
+	if (currentCase->IsNotEmpty())
+	{
+		ChangeManaBy(-3);
+		currentCase->BoostCurrentPiece(2);
+	}
 }
 
 

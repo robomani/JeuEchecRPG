@@ -5,11 +5,17 @@
 #include "EPieceType.h"
 #include <SDL_image.h>
 
+
 const int Board::CASE_NUMBER = 8;
 const int Board::CASE_WIDTH = 100;
 const int Board::CASE_HEIGHT = 100;
 const int Board::X_OFFSET = 100;
 const int Board::Y_OFFSET = 100;
+
+int tempx;
+int tempy;
+
+bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max);
 
 Board::Board()
 	: m_CurrentCase(nullptr)
@@ -135,6 +141,8 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 	if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 	{
 		Case* caseTargeted = m_Cases[i][j];
+		tempx = i;
+		tempy = j;
 		if (caseTargeted->IsNotEmpty())
 		{
 			Case* caseToShowUI = m_Cases[i][j];
@@ -144,12 +152,12 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 			Text::SetText(ETextContent::PiecesPower, caseToShowUI->GetPowerDescr());
 			Text::SetText(ETextContent::PiecesPowerAvable, powerReadyText);
 		}
-		
+
 		if (caseTargeted->IsNotEmpty() && caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
 		{
 			m_CurrentCase = m_Cases[i][j];
 			m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
-			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
+			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAffectedPowerCases(m_Cases);
 			m_CurrentCase->Move(a_X, a_Y);
 		}
 	}
@@ -165,9 +173,18 @@ void Board::MouseMotion(const int a_X, const int a_Y)
 
 void Board::ToogleUsingPower()
 {
-	if (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady())
+	if (m_UsingPower || (m_CurrentCase != nullptr && m_CurrentCase->IsPieceIsThisColor(Game::GetColorTurn()) && m_CurrentCase->IsPowerReady()))
 	{
 		m_UsingPower = !m_UsingPower;
+	}
+
+	if (m_UsingPower)
+	{
+		Text::SetText(ETextContent::UsingPowerMode, "Using Power");
+	}
+	else
+	{
+		Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");
 	}
 }
 
@@ -208,33 +225,107 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 			}
 			else
 			{
-				if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+				switch (m_CurrentCase->GetPieceType())
 				{
-					
-					switch (m_CurrentCase->GetPieceType())
-					{
-					case Enums::EPieceType::Pion:
+				case Enums::EPieceType::Pion:
 
-						break;
-					case Enums::EPieceType::Chevalier:
-						break;
-					case Enums::EPieceType::Tour:
-						break;
-					case Enums::EPieceType::Fou:
-						break;
-					case Enums::EPieceType::Reine:
-						break;
-					case Enums::EPieceType::Roi:
-						break;
-					default:
-						break;
+					if (IsBetween(tempx + 1,0,7) && IsBetween(tempy - 1,0,7) && m_Cases[tempx + 1][tempy - 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx + 1][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy - 1]->RemovePiece();
+						}
 					}
-					m_CurrentCase->UsePower();
+					if (IsBetween(tempx + 1, 0, 7) && m_Cases[tempx + 1][tempy]->IsNotEmpty())
+					{
+						if (m_Cases[tempx + 1][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy]->RemovePiece();
+						}
+					}
+					if (IsBetween(tempx + 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx + 1][tempy + 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx + 1][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx + 1][tempy + 1]->RemovePiece();
+						}
+					}
+					if (IsBetween(tempy - 1, 0, 7) && m_Cases[tempx][tempy - 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx][tempy - 1]->RemovePiece();
+						}
+					}
+					if (IsBetween(tempy + 1, 0, 7) && m_Cases[tempx][tempy + 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx][tempy + 1]->RemovePiece();
+						}
+					}
+					if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy - 1, 0, 7) && m_Cases[tempx - 1][tempy - 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx - 1][tempy - 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy - 1]->RemovePiece();
+						}
+					}
+					if (IsBetween(tempx - 1, 0, 7) && m_Cases[tempx - 1][tempy]->IsNotEmpty())
+					{
+						if (m_Cases[tempx - 1][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy]->RemovePiece();
+						}	
+					}
+					if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx - 1][tempy + 1]->IsNotEmpty())
+					{
+						if (m_Cases[tempx - 1][tempy + 1]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_Cases[tempx - 1][tempy + 1]->RemovePiece();
+						}
+						
+					}
+					if (m_Cases[tempx][tempy]->IsNotEmpty())
+					{
+						if (m_Cases[tempx][tempy]->DamageCurrentPiece(m_CurrentCase->CurrentPieceAttack()))
+						{
+							m_CurrentCase->RemovePiece();
+						}
+						
+					}
+					break;
+				case Enums::EPieceType::Chevalier:
+					break;
+				case Enums::EPieceType::Tour:
+					break;
+				case Enums::EPieceType::Fou:
+					break;
+				case Enums::EPieceType::Reine:
+					break;
+				case Enums::EPieceType::Roi:
+					break;
+				default:
+					break;
+				
 				}
+				Game::ChangeColorTurn();
 			}
 		}
 
 		m_CurrentCase->BackToOriginalPosition();
 		m_CurrentCase = nullptr;
+	}
+}
+
+bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max)
+{
+	if (i_Value >= i_Min && i_Value <= i_Max)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
