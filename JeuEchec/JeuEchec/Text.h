@@ -54,6 +54,13 @@ public:
 	static void SetColor(ETextContent a_TextData, int a_R, int a_G, int a_B);
 
 	/// <summary>
+	/// Change the Text Color.
+	/// </summary>
+	/// <param name="a_TextData">The TextData To Modify</param>
+	/// <param name="a_SDLColor">The SDL_Color The Text will be set</param>
+	static void SetColor(ETextContent a_TextData, SDL_Color& a_SDLColor);
+
+	/// <summary>
 	/// Draws the text's texture
 	/// </summary>	
 	/// <param name="a_Parent">The parent to draw in</param>

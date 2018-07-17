@@ -85,12 +85,84 @@ bool Game::Inputs()
 			case SDL_QUIT:
 			{
 				return true;
-			}	
+			}
 			case SDL_KEYDOWN:
 				switch (e.key.keysym.sym)
 				{
 				case SDLK_SPACE:
+				{
 					m_Board->ToogleUsingPower();
+				}
+				case SDLK_1:
+				{
+
+					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 1)
+					{
+						m_Player01->Power01(*m_Board);
+						
+					}
+					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 1)
+					{
+						m_Player02->Power01(*m_Board);
+					}
+					break;
+				}
+				case SDLK_2:
+				{
+					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 2)
+					{
+						m_Player01->Power02(*m_Board);
+						UpdateMana(1);
+					}
+					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 2)
+					{
+						m_Player02->Power02(*m_Board);
+						UpdateMana(2);
+					}
+					break;
+				}
+				case SDLK_3:
+				{
+					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 3)
+					{
+						m_Player01->Power03(*m_Board);
+						UpdateMana(1);
+					}
+					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 3)
+					{
+						m_Player02->Power03(*m_Board);
+						UpdateMana(2);
+					}
+					break;
+				}
+				case SDLK_4:
+				{
+					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 5)
+					{
+						m_Player01->ChangeManaBy(-5);
+						UpdateMana(1);
+					}
+					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 5)
+					{
+						m_Player02->ChangeManaBy(-5);
+						UpdateMana(2);
+					}
+					break;
+				}
+				case SDLK_5:
+				{
+					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 25)
+					{
+						m_Player01->ChangeManaBy(-25);
+						UpdateMana(1);
+					}
+					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 25)
+					{
+						m_Player02->ChangeManaBy(-25);
+						UpdateMana(2);
+					}
+					break;
+				}
 				}
 				
 			case SDL_MOUSEBUTTONDOWN:
@@ -117,7 +189,6 @@ bool Game::Inputs()
 				m_Board->MouseButtonUp(x, y);
 				break;
 			}
-			
 			default:
 				break;
 		}
@@ -142,8 +213,33 @@ void Game::Update()
 	{
 		m_Board->ResetUsingPower();
 		m_ColorTurn = m_ChangeTurnToColor;
-		m_ColorTurn == Enums::EPieceColor::Blanche ? m_Player01->ChangeManaBy(1) : m_Player02->ChangeManaBy(1);
+
+		if (m_ColorTurn == Enums::EPieceColor::Blanche)
+		{
+			m_Player01->ChangeManaBy(1);
+			m_Player01->ChangePowerTexts();
+		}
+		else
+		{
+			m_Player02->ChangeManaBy(1);
+			m_Player02->ChangePowerTexts();
+		}
+
+		UpdateMana(1);
+		UpdateMana(2);
 	}
 	
 	m_Board->Update();
+}
+
+void Game::UpdateMana(int a_Player)
+{
+	if (a_Player == 1)
+	{
+		Text::SetText(ETextContent::Player01Mana, "Mana: " + std::to_string(m_Player01->GetMana()));
+	}
+	else
+	{
+		Text::SetText(ETextContent::Player02Mana, "Mana: " + std::to_string(m_Player02->GetMana()));
+	}
 }

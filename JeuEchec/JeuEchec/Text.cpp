@@ -31,12 +31,12 @@ void Text::Init()
 			}
 		case ETextContent::Player01Mana:
 			{
-				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 350, 100, 100 }));
+				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 650, 100, 100 }));
 				break;
 			}		
 		case ETextContent::Player02Mana:
 			{
-				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 650, 100, 100 }));
+				m_Texts.push_back(new TextData("Mana: 00", { 50, 50, 255 }, { 0, 350, 100, 100 }));
 				break;
 			}
 		case ETextContent::PlayerPower01:
@@ -99,6 +99,11 @@ void Text::SetColor(ETextContent a_TextData, int a_R, int a_G, int a_B)
 {
 	SDL_Color newColor = { a_R, a_G, a_B };
 	m_Texts[a_TextData]->color = newColor;
+}
+
+void Text::SetColor(ETextContent a_TextData, SDL_Color& a_SDLColor)
+{
+	m_Texts[a_TextData]->color = a_SDLColor;
 }
 
 void Text::Draw(SDL_Surface* a_Parent)

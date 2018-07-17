@@ -346,8 +346,6 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 		m_CurrentCase->BackToOriginalPosition();
 		m_CurrentCase = nullptr;
 	}
-
-	
 }
 
 bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max)

@@ -185,6 +185,14 @@ public:
 	/// </summary>
 	void EatPiece(int i_HP, int i_Attack, int i_Armor, bool i_Power) { m_Piece->EatPiece( i_HP,  i_Attack,  i_Armor, i_Power); }
 
+	//Boost the Piece on this tile by selected amount
+	void BoostCurrentPiece(int i_Boost) { m_Piece->BoostPiece(i_Boost); }
+
+	/// <summary>
+	/// Reset the Power for the Current Piece on this tile.
+	/// </summary>
+	void ResetCurrentPower() { m_Piece->ResetPower(); }
+
 private:
 	
 	/// <summary>

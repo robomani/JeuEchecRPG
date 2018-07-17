@@ -66,6 +66,13 @@ private:
 	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// Update the player mana text.
+	/// </summary>
+	/// <param name="a_Player">The Player To Update The Mana 1 = player 01 Mana Text, Any other nbr Will update the Player 02 Mana text</param>
+	void UpdateMana(int a_Player);
+
+
 	SDL_Window* m_Window;	// The SDL window itself
 	SDL_Surface* m_WindowSurface;  // The surface of the SDL window
 	SDL_Surface* m_BackgroundSurface;  // The surface of the background
