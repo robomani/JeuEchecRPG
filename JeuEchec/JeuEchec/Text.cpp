@@ -65,10 +65,15 @@ void Text::Init()
 				break;
 			}
 		case ETextContent::UsingPowerMode:
-		{
-			m_Texts.push_back(new TextData("Saying if the player is Using Power for the piece he hold", { 255, 0, 0 }, { 1000, 350, 100, 100 }));
-			break;
-		}
+			{
+				m_Texts.push_back(new TextData("Saying if the player is Using Power for the piece he hold", { 255, 0, 0 }, { 1000, 350, 100, 100 }));
+				break;
+			}
+		case ETextContent::SwitchMode:
+			{
+				m_Texts.push_back(new TextData("", { 0, 255, 255 }, { 925, 700, 100, 100 }));
+				break;
+			}
 		}
 	}
 }

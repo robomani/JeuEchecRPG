@@ -224,6 +224,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 			if (!m_UsingPower)
 			{
 				if (m_IsSwitchingPieces
+				&& caseTargeted->IsNotEmpty()
 				&& caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
 				{
 					m_IsSwitchingPieces = false;

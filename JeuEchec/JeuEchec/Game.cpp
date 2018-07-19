@@ -211,11 +211,18 @@ void Game::Draw()
 
 void Game::Update()
 {
+	if (m_Board->IsSwitchingPieces())
+	{
+		Text::SetText(ETextContent::SwitchMode, "Drop The Piece On An Ally Piece To Swap Their Positions.");
+	}
+
+
 	if (m_ChangeTurnToColor != m_ColorTurn)
 	{
 		if (m_Board->IsSwitchingPieces())
 		{
 			m_Board->SetIsSwitchingPieces(false);
+			Text::SetText(ETextContent::SwitchMode, "");
 		}
 
 		m_Board->ResetUsingPower();
