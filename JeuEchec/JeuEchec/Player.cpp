@@ -49,6 +49,7 @@ void Player::Power02(Board& a_Board)
 	{
 		ChangeManaBy(-2);
 		currentCase->ResetCurrentPower();
+		Text::SetText(ETextContent::PiecesPowerAvable, "Power Ready");
 		ChangePowerTexts();
 	}
 }

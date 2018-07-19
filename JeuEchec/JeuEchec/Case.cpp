@@ -126,11 +126,14 @@ std::vector<std::tuple<int, int>> Case::GetAvailableMoves(const std::vector<std:
 			if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
 			{
 				// If a piece of the opposite color is found, add the targeted indexes, and look for another direction.
-				if (a_Cases[i][j]->IsNotEmpty() && a_Cases[i][j]->IsPieceIsNotThisColor(m_Piece->GetColor()))
+				if (a_Cases[i][j]->IsNotEmpty())
 				{
-					availableMoves.push_back(*iter);
+					if (a_Cases[i][j]->IsPieceIsNotThisColor(m_Piece->GetColor()))
+					{
+						availableMoves.push_back(*iter);
+					}
 					break;
-				}
+				} 
 			}
 		}
 	}
