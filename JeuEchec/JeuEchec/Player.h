@@ -35,26 +35,37 @@ public:
 	/// <summary>
 	/// End The Player Turn.
 	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
 	void Power01(Board& a_Board);
 
 	/// <summary>
 	/// The Next Ally Selected Piece Will Have his Power Reseted.
 	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
 	void Power02(Board& a_Board);
 
 	/// <summary>
 	/// The Next Ally Selected Piece Will Gain 2 HP And 2 Attack.
 	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
 	void Power03(Board& a_Board);
 
 	/// <summary>
 	/// Drag And Drop An Ally Piece on a second ally piece to switch their positions. 
 	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
 	void Power04(Board& a_Board);
+
+	/// <summary>
+	/// Called By the Board When The Power04 is Accomplished. 
+	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
+	void OnSwitchDone(Board& a_Board);
 
 	/// <summary>
 	/// Win The Game.
 	/// </summary>
+	/// <param name="a_Board">The instance of the game board</param>
 	void Power05(Board& a_Board);
 private:
 

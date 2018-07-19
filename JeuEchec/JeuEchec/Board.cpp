@@ -134,6 +134,21 @@ void Board::Update()
 
 }
 
+void Board::DestroAllEnnemies()
+{
+	for (int i = 0; i < m_Cases.size(); i++)
+	{
+		for (int x = 0; x < m_Cases[i].size(); x++)
+		{
+			if (m_Cases[i][x]->IsNotEmpty()
+			&& m_Cases[i][x]->IsPieceIsNotThisColor(Game::GetColorTurn()))
+			{
+				m_Cases[i][x]->RemovePiece();
+			}
+		}
+	}
+}
+
 void Board::MouseButtonDown(const int a_X, const int a_Y)
 {
 	int i = (a_Y - Y_OFFSET) / Board::CASE_WIDTH;
@@ -207,6 +222,15 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 			Case* caseTargeted = m_Cases[i][j];
 			if (!m_UsingPower)
 			{
+				if (m_IsSwitchingPieces
+				&& caseTargeted->IsPieceIsThisColor(Game::GetColorTurn()))
+				{
+					m_IsSwitchingPieces = false;
+					m_IsSwitchSuccessfull = true;
+					caseTargeted->SwapPieceWith(m_CurrentCase);
+					Game::ChangeColorTurn();
+				}
+
 				if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
 				{
 					// The targeted case is empty
@@ -229,7 +253,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 						}
 						Game::ChangeColorTurn();
 					}
-				}
+				}	
 			}
 			else
 			{
