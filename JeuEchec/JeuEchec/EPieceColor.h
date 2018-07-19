@@ -10,6 +10,9 @@ namespace Enums
 	{
 		Blanche = 0,
 		Noire,
+		Green,
+		Blue,
+		None,
 
 		Color_Count
 	};

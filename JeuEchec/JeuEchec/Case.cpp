@@ -2,17 +2,23 @@
 #include "Board.h"
 #include "PieceFactory.h"
 #include <tuple>
+#include <SDL_image.h>
 
 Case::Case(const int a_X, const int a_Y)
 	: m_OriginalX(a_X + Board::X_OFFSET)
 	, m_OriginalY(a_Y + Board::Y_OFFSET)
 {
+	m_GreenTexture = IMG_Load(("images/GreenCase.png"));
+	m_BlueTexture = IMG_Load(("images/BlueCase.png"));
 	Init();
+
 }
 
 Case::Case(const int a_X, const int a_Y, const Enums::EPieceType a_PieceType, const Enums::EPieceColor a_Color)
 	: Case(a_X, a_Y)
 {
+	m_GreenTexture = IMG_Load(("images/GreenCase.png"));
+	m_BlueTexture = IMG_Load(("images/BlueCase.png"));
 	m_Piece = PieceFactory::CreatePiece(a_PieceType, a_Color);
 }
 
@@ -21,6 +27,18 @@ Case::~Case()
 	if (m_Piece != nullptr)
 	{
 		delete m_Piece;
+	}
+
+	if (m_GreenTexture != nullptr)
+	{
+		SDL_FreeSurface(m_GreenTexture);
+		m_GreenTexture = nullptr;
+	}
+
+	if (m_BlueTexture != nullptr)
+	{
+		SDL_FreeSurface(m_BlueTexture);
+		m_BlueTexture = nullptr;
 	}
 }
 
@@ -34,11 +52,36 @@ void Case::CreatePiece(Enums::EPieceType a_PieceType, Enums::EPieceColor a_Color
 	m_Piece = PieceFactory::CreatePiece(a_PieceType, a_Color);
 }
 
+void Case::ColorBlue()
+{
+	m_ColorBlue = true;
+}
+
+void Case::ColorGreen()
+{
+	m_ColorGreen = true;
+}
+
+void Case::ClearColor()
+{
+	m_ColorBlue = false;
+	m_ColorGreen = false;
+}
+
 void Case::Draw(SDL_Surface* a_Parent)
 {
 	if (m_Piece != nullptr) 
 	{
 		m_Piece->Draw(a_Parent, &m_Rect);
+	}
+
+	if (m_ColorBlue)
+	{
+		SDL_BlitSurface(m_BlueTexture, NULL, a_Parent, &m_Rect);
+	}
+	if (m_ColorGreen)
+	{
+		SDL_BlitSurface(m_GreenTexture, NULL, a_Parent, &m_Rect);
 	}
 }
 

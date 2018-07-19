@@ -31,6 +31,11 @@ Board::~Board()
 		m_CurrentCase = nullptr;
 	}
 
+	if (m_TransportingCase != nullptr)
+	{
+		m_TransportingCase = nullptr;
+	}
+
 	for (std::vector<std::vector<Case*>>::iterator iter = m_Cases.begin(); iter != m_Cases.end(); iter++)
 	{
 		for (std::vector<Case*>::iterator iter2 = (*iter).begin(); iter2 != (*iter).end(); iter2++)
@@ -177,6 +182,23 @@ void Board::MouseButtonDown(const int a_X, const int a_Y)
 			m_AvailableMoveForCurrentPiece = m_CurrentCase->GetAvailableMoves(m_Cases);
 			m_AffectedPowerForCurrentPiece = m_CurrentCase->GetAffectedPowerCases(m_Cases);
 			m_CurrentCase->Move(a_X, a_Y);
+
+
+
+			for (int i = 0; i < m_Cases.size(); i++)
+			{
+				for (int x = 0; x < m_Cases[i].size(); x++)
+				{
+					if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, x)) != m_AvailableMoveForCurrentPiece.end())
+					{
+						m_Cases[i][x]->ColorGreen();
+					}
+					if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, x)) != m_AffectedPowerForCurrentPiece.end())
+					{
+						m_Cases[i][x]->ColorBlue();
+					}
+				}
+			}
 		}
 	}
 }
@@ -195,6 +217,11 @@ void Board::ToogleUsingPower()
 	{
 		m_UsingPower = !m_UsingPower;
 	}
+	if (m_TransportingCase != nullptr)
+	{
+		m_TransportingCase->ClearColor();
+		m_TransportingCase = nullptr;
+	}
 
 	if (m_UsingPower)
 	{
@@ -209,6 +236,11 @@ void Board::ToogleUsingPower()
 void Board::ResetUsingPower()
 {
 	 m_UsingPower = false; 
+	 if (m_TransportingCase != nullptr)
+	 {
+		 m_TransportingCase->ClearColor();
+		 m_TransportingCase = nullptr;
+	 }
 	Text::SetText(ETextContent::UsingPowerMode, "Not Using Power");	 
 }
 
@@ -216,6 +248,14 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 {
 	if (m_CurrentCase != nullptr)
 	{
+		for (int i = 0; i < m_Cases.size(); i++)
+		{
+			for (int x = 0; x < m_Cases[i].size(); x++)
+			{
+				m_Cases[x][i]->ClearColor();
+			}
+		}
+
 		int i = (a_Y - Y_OFFSET) / Board::CASE_WIDTH;
 		int j = (a_X - X_OFFSET) / Board::CASE_HEIGHT;
 		if (i > -1 && i < Board::CASE_NUMBER && j > -1 && j < Board::CASE_NUMBER)
@@ -344,6 +384,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 							else if (caseTargeted->IsNotEmpty())
 							{
 								m_TransportingCase = caseTargeted;
+								m_TransportingCase->ColorBlue();
 							}
 						}
 					}
@@ -355,6 +396,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 							if (caseTargeted->IsEmpty())
 							{
 								m_CurrentCase->UsePower();
+								m_TransportingCase->ClearColor();
 								caseTargeted->SwapPieceWith(m_TransportingCase);
 								m_TransportingCase = nullptr;
 								Game::ChangeColorTurn();
@@ -369,7 +411,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 						// The targeted case is empty
 						if (caseTargeted->IsEmpty())
 						{
-
+							caseTargeted->SwapPieceWith(m_CurrentCase);
 						}
 						else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
 						{
