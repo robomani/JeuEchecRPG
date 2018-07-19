@@ -203,6 +203,21 @@ public:
 	/// </summary>
 	Enums::EPieceColor GetPieceColor() { return m_Piece->GetColor(); }
 
+	/// <summary>
+	/// Make the case blue
+	/// </summary>
+	void ColorBlue();
+
+	/// <summary>
+	/// Make the case green
+	/// </summary>
+	void ColorGreen();
+
+	/// <summary>
+	/// Clear the color of the case
+	/// </summary>
+	void ClearColor();
+
 private:
 	
 	/// <summary>
@@ -210,11 +225,16 @@ private:
 	/// </summary>
 	void Init();
 
+	SDL_Surface* m_GreenTexture;  // The SDL Surface that contain the greenCase texture
+	SDL_Surface* m_BlueTexture;  // The SDL Surface that contain the blueCase texture
+
 	SDL_Rect m_Rect;  // The rect where the content of the case will be draw
 	Piece* m_Piece;   // The piece on this case (can be nullptr)
 
 	int m_OriginalX;  // The original X position (at the instantiation)
 	int m_OriginalY;  // The original Y position (at the instantiation)
+	bool m_ColorBlue;
+	bool m_ColorGreen;
 };
 
 #endif // __CASE__
