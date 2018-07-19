@@ -58,8 +58,8 @@ void Game::Init()
 	m_Player02 = new Player();
 }
 
-void Game::ChangeColorTurn() 
-{ 
+void Game::ChangeColorTurn()
+{
 	m_ChangeTurnToColor = static_cast<Enums::EPieceColor>(!static_cast<bool>(m_ColorTurn));
 }
 
@@ -82,115 +82,117 @@ bool Game::Inputs()
 	{
 		switch (e.type)
 		{
-			case SDL_QUIT:
+		case SDL_QUIT:
+		{
+			return true;
+		}
+		case SDL_KEYDOWN:
+		{
+			switch (e.key.keysym.sym)
 			{
-				return true;
+			case SDLK_SPACE:
+			{
+				m_Board->ToogleUsingPower();
+				break;
 			}
-			case SDL_KEYDOWN:
-				switch (e.key.keysym.sym)
+			case SDLK_1:
+			{
+				if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 1)
 				{
-				case SDLK_SPACE:
-				{
-					m_Board->ToogleUsingPower();
-				}
-				case SDLK_1:
-				{
+					m_Player01->Power01(*m_Board);
 
-					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 1)
-					{
-						m_Player01->Power01(*m_Board);
-						
-					}
-					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 1)
-					{
-						m_Player02->Power01(*m_Board);
-					}
-					break;
 				}
-				case SDLK_2:
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 1)
 				{
-					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 2)
-					{
-						m_Player01->Power02(*m_Board);
-						UpdateMana(1);
-					}
-					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 2)
-					{
-						m_Player02->Power02(*m_Board);
-						UpdateMana(2);
-					}
-					break;
+					m_Player02->Power01(*m_Board);
 				}
-				case SDLK_3:
-				{
-					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 3)
-					{
-						m_Player01->Power03(*m_Board);
-						UpdateMana(1);
-					}
-					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 3)
-					{
-						m_Player02->Power03(*m_Board);
-						UpdateMana(2);
-					}
-					break;
-				}
-				case SDLK_4:
-				{
-					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 5)
-					{
-						m_Player01->ChangeManaBy(-5);
-						UpdateMana(1);
-					}
-					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 5)
-					{
-						m_Player02->ChangeManaBy(-5);
-						UpdateMana(2);
-					}
-					break;
-				}
-				case SDLK_5:
-				{
-					if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 25)
-					{
-						m_Player01->ChangeManaBy(-25);
-						UpdateMana(1);
-					}
-					else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 25)
-					{
-						m_Player02->ChangeManaBy(-25);
-						UpdateMana(2);
-					}
-					break;
-				}
-				}
-				
-			case SDL_MOUSEBUTTONDOWN:
-			{
-				int x = 0;
-				int y = 0;
-				SDL_GetMouseState(&x, &y);
-				m_Board->MouseButtonDown(x, y);
 				break;
 			}
-			case SDL_MOUSEMOTION:
+			case SDLK_2:
 			{
-				int x = 0;
-				int y = 0;
-				SDL_GetMouseState(&x, &y);
-				m_Board->MouseMotion(x, y);
+				if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 2)
+				{
+					m_Player01->Power02(*m_Board);
+					UpdateMana(1);
+				}
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 2)
+				{
+					m_Player02->Power02(*m_Board);
+					UpdateMana(2);
+				}
 				break;
 			}
-			case SDL_MOUSEBUTTONUP:
+			case SDLK_3:
 			{
-				int x = 0;
-				int y = 0;
-				SDL_GetMouseState(&x, &y);
-				m_Board->MouseButtonUp(x, y);
+				if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 3)
+				{
+					m_Player01->Power03(*m_Board);
+					UpdateMana(1);
+				}
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 3)
+				{
+					m_Player02->Power03(*m_Board);
+					UpdateMana(2);
+				}
 				break;
 			}
-			default:
+			case SDLK_4:
+			{
+				if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 5)
+				{
+					m_Player01->Power04(*m_Board);
+					UpdateMana(1);
+				}
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 5)
+				{
+					m_Player02->Power04(*m_Board);
+					UpdateMana(2);
+				}
 				break;
+			}
+			case SDLK_5:
+			{
+				if (GetColorTurn() == Enums::Blanche && m_Player01->GetMana() >= 25)
+				{
+					m_Player01->Power05(*m_Board);
+					UpdateMana(1);
+				}
+				else if (GetColorTurn() == Enums::Noire && m_Player02->GetMana() >= 25)
+				{
+					m_Player02->Power05(*m_Board);
+					UpdateMana(2);
+				}
+				break;
+			}
+			}
+			break;
+		}
+		case SDL_MOUSEBUTTONDOWN:
+		{
+			int x = 0;
+			int y = 0;
+			SDL_GetMouseState(&x, &y);
+			m_Board->MouseButtonDown(x, y);
+			break;
+		}
+		case SDL_MOUSEMOTION:
+		{
+			int x = 0;
+			int y = 0;
+			SDL_GetMouseState(&x, &y);
+			m_Board->MouseMotion(x, y);
+			break;
+		}
+		case SDL_MOUSEBUTTONUP:
+		{
+			int x = 0;
+			int y = 0;
+			SDL_GetMouseState(&x, &y);
+			m_Board->MouseButtonUp(x, y);
+			break;
+		}
+		default:
+			break;
 		}
 	}
 
@@ -209,18 +211,40 @@ void Game::Draw()
 
 void Game::Update()
 {
+	if (m_Board->IsSwitchingPieces())
+	{
+		Text::SetText(ETextContent::SwitchMode, "Drop The Piece On An Ally Piece To Swap Their Positions.");
+	}
+
+
 	if (m_ChangeTurnToColor != m_ColorTurn)
 	{
+		if (m_Board->IsSwitchingPieces())
+		{
+			m_Board->SetIsSwitchingPieces(false);
+			Text::SetText(ETextContent::SwitchMode, "");
+		}
+
 		m_Board->ResetUsingPower();
 		m_ColorTurn = m_ChangeTurnToColor;
 
 		if (m_ColorTurn == Enums::EPieceColor::Blanche)
 		{
+			if (m_Board->IsSwitchSuccessfull())
+			{
+				m_Player02->ChangeManaBy(-5);
+				m_Board->SetIsSwitchSuccessfull(false);
+			}
 			m_Player01->ChangeManaBy(1);
 			m_Player01->ChangePowerTexts();
 		}
 		else
 		{
+			if (m_Board->IsSwitchSuccessfull())
+			{
+				m_Player01->ChangeManaBy(-5);
+				m_Board->SetIsSwitchSuccessfull(false);
+			}
 			m_Player02->ChangeManaBy(1);
 			m_Player02->ChangePowerTexts();
 		}
@@ -228,7 +252,7 @@ void Game::Update()
 		UpdateMana(1);
 		UpdateMana(2);
 	}
-	
+
 	m_Board->Update();
 }
 
