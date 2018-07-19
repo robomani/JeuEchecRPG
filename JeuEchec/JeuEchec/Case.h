@@ -65,7 +65,7 @@ public:
 	/// <summary>
 	/// Removes the piece from the case.
 	/// </summary>
-	void RemovePiece() { m_Piece = nullptr; }
+	void RemovePiece();
 	
 	/// <summary>
 	/// Gets the available moves for the piece on this case.

@@ -1,4 +1,5 @@
 #include "Roi.h"
+#include "Game.h"
 
 Roi::Roi(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
 	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WKing" : "images/BKing", i_HP, i_Attack, i_Armor)
@@ -28,4 +29,5 @@ Roi::Roi(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Ar
 
 Roi::~Roi()
 {
+	Game::OnKingDead(m_PieceColor);
 }

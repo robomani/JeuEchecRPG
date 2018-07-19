@@ -9,6 +9,8 @@ Enums::EPieceColor Game::m_ColorTurn = Enums::EPieceColor::Blanche;
 Enums::EPieceColor Game::m_ChangeTurnToColor = Enums::EPieceColor::Blanche;
 const int Game::SCREEN_WIDTH = 1500;
 const int Game::SCREEN_HEIGHT = 1000;
+std::string Game::m_WinnerColorText;
+Enums::EPieceColor Game::m_WinnerColor;
 
 Game::Game()
 {
@@ -211,11 +213,24 @@ void Game::Draw()
 
 void Game::Update()
 {
+	if (!m_WinnerColorText.empty())
+	{
+		Text::SetText(ETextContent::Win, "The " + m_WinnerColorText + " Win!");
+
+		if (m_WinnerColor != GetColorTurn())
+		{
+			ChangeColorTurn();
+			m_ColorTurn = m_ChangeTurnToColor;
+		}
+
+		m_Board->DestroAllEnnemies();
+		return;
+	}
+
 	if (m_Board->IsSwitchingPieces())
 	{
 		Text::SetText(ETextContent::SwitchMode, "Drop The Piece On An Ally Piece To Swap Their Positions.");
 	}
-
 
 	if (m_ChangeTurnToColor != m_ColorTurn)
 	{
@@ -265,5 +280,14 @@ void Game::UpdateMana(int a_Player)
 	else
 	{
 		Text::SetText(ETextContent::Player02Mana, "Mana: " + std::to_string(m_Player02->GetMana()));
+	}
+}
+
+void Game::OnKingDead(Enums::EPieceColor a_Color)
+{
+	if (m_WinnerColorText.empty())
+	{
+		m_WinnerColorText = a_Color == Enums::EPieceColor::Blanche ? "Black" : "White";
+		m_WinnerColor = a_Color == Enums::EPieceColor::Blanche ? Enums::EPieceColor::Noire : Enums::EPieceColor::Blanche;		
 	}
 }

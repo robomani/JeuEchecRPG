@@ -4,6 +4,7 @@
 #include "EPieceColor.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <string>
 
 class Board;
 class Player;
@@ -35,8 +36,14 @@ public:
 	/// <summary>
 	/// Gets the color turn.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns> the current turn color, enum (black or white)</returns>
 	static Enums::EPieceColor GetColorTurn() { return m_ColorTurn; }
+
+	/// <summary>
+	/// Called when the king his dead. Set the Winner Color.
+	/// </summary>
+	/// <param name="a_Color">The Color of the died king</param>
+	static void OnKingDead(Enums::EPieceColor a_Color);
 
 private:
 	
@@ -44,6 +51,16 @@ private:
 	static const int SCREEN_HEIGHT; // Define the height of the screen
 
 	static Enums::EPieceColor m_ColorTurn; // The color to play
+
+	/// <summary>
+	/// The color of the player who just winned the game.
+	/// </summary>
+	static Enums::EPieceColor m_WinnerColor;
+
+	/// <summary>
+	/// The color of the player who just winned the game.
+	/// </summary>
+	static std::string m_WinnerColorText;
 	
 	/// <summary>
 	/// Initializes this instance.

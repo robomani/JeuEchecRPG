@@ -23,7 +23,7 @@ public:
 	/// <summary>
 	/// Finalizes an instance of the <see cref="Piece"/> class.
 	/// </summary>
-	~Piece();
+	virtual ~Piece();
 	
 	/// <summary>
 	/// Draws the piece's texture

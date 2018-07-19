@@ -74,6 +74,11 @@ void Text::Init()
 				m_Texts.push_back(new TextData("", { 0, 255, 255 }, { 925, 700, 100, 100 }));
 				break;
 			}
+		case ETextContent::Win:
+			{
+				m_Texts.push_back(new TextData("", { 0, 255, 255 }, { 925, 700, 100, 100 }));
+				break;
+			}
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #include "Case.h"
 #include "Board.h"
+#include "Game.h"
 #include "PieceFactory.h"
 #include <tuple>
 #include <SDL_image.h>
@@ -95,6 +96,13 @@ void Case::Move(int a_X, int a_Y)
 	m_Rect.x = a_X - static_cast<int>(Board::CASE_WIDTH * 0.5f);
 	m_Rect.y = a_Y - static_cast<int>(Board::CASE_HEIGHT * 0.5f);
 }
+
+void Case::RemovePiece()
+{ 
+	delete m_Piece;
+	m_Piece = nullptr; 
+}
+
 
 void Case::SwapPieceWith(Case* a_OtherCase)
 {
