@@ -38,6 +38,34 @@ public:
 	Case* GetCurrentCase() { return m_CurrentCase; }  // The current case clicked
 
 	/// <summary>
+	/// Get if the player is trying to switch pieces.
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if the player is trying to switch pieces; otherwise, <c>false</c>.
+	/// </returns>
+	bool IsSwitchingPieces() { return m_IsSwitchingPieces; }
+
+	/// <summary>
+	/// Set the bool value of IsSwitchingPieces.
+	/// </summary>
+	/// <param name="a_Value">The bool value to set IsSwitchingPieces</param>
+	void SetIsSwitchingPieces(bool a_Value) { m_IsSwitchingPieces = a_Value; }
+
+	/// <summary>
+	/// Get if the player has successfully done the switch of two pieces.
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if the player has successfully done the switch of two pieces; otherwise, <c>false</c>.
+	/// </returns>
+	bool IsSwitchSuccessfull() { return m_IsSwitchSuccessfull; }
+
+	/// <summary>
+	/// Set the bool value of IsSwitchSuccessfull.
+	/// </summary>
+	/// <param name="a_Value">The bool value to set IsSwitchSuccessfull</param>
+	void SetIsSwitchSuccessfull(bool a_Value) { m_IsSwitchSuccessfull = a_Value; }
+
+	/// <summary>
 	/// Draws all the cases on the board.
 	/// </summary>
 	/// <param name="a_Parent">The SDL Surface where to draw</param>
@@ -52,6 +80,11 @@ public:
 	/// Updates this instance.
 	/// </summary>
 	void Update();
+
+	/// <summary>
+	/// Kill all ennemies pieces.
+	/// </summary>
+	void DestroAllEnnemies();
 	
 	/// <summary>
 	/// When the left button is pressed on the mouse.
@@ -97,6 +130,10 @@ private:
 	//Bool remembering if selected piece is using its power
 	bool m_UsingPower;
 
+	//True if the player is trying to switch two of his pieces.
+	bool m_IsSwitchingPieces = false;
+	//True if the player has successfully done the switch of two pieces.
+	bool m_IsSwitchSuccessfull = false;
 	
 
 	SDL_Surface* m_BoardTexture;   // The SDL Surface that contain the texture loaded.

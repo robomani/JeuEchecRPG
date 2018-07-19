@@ -7,7 +7,6 @@ Player::Player()
 {
 }
 
-
 Player::~Player()
 {
 }
@@ -29,7 +28,6 @@ void Player::ChangePowerTexts()
 	m_Mana >= 25 ? Text::SetColor(ETextContent::PlayerPower05, green) : Text::SetColor(ETextContent::PlayerPower05, red);
 }
 
-
 void Player::Power01(Board& a_Board)
 {
 	if (a_Board.GetCurrentCase() != nullptr)
@@ -41,38 +39,48 @@ void Player::Power01(Board& a_Board)
 	Game::ChangeColorTurn();
 }
 
-
 void Player::Power02(Board& a_Board)
 {
 	Case* currentCase = a_Board.GetCurrentCase();
 
-	if (currentCase->IsNotEmpty() && !currentCase->IsPowerReady())
+	if (currentCase 
+	&& currentCase->IsNotEmpty() 
+	&& !currentCase->IsPowerReady())
 	{
 		ChangeManaBy(-2);
 		currentCase->ResetCurrentPower();
+		ChangePowerTexts();
 	}
 }
-
 
 void Player::Power03(Board& a_Board)
 {
 	Case* currentCase = a_Board.GetCurrentCase();
 
-	if (currentCase->IsNotEmpty())
+	if (currentCase
+	&& currentCase->IsNotEmpty())
 	{
 		ChangeManaBy(-3);
 		currentCase->BoostCurrentPiece(2);
+		Text::SetText(ETextContent::PiecesStats, currentCase->GetHP(), currentCase->GetAttack(), currentCase->GetArmor());
+		ChangePowerTexts();
 	}
 }
 
-
 void Player::Power04(Board& a_Board)
 {
+	Case* currentCase = a_Board.GetCurrentCase();
 
+	if (currentCase
+	&& currentCase->IsNotEmpty())
+	{
+		a_Board.SetIsSwitchingPieces(true);
+	}
 }
-
 
 void Player::Power05(Board& a_Board)
 {
-
+	ChangeManaBy(-25);
+	ChangePowerTexts();
+	a_Board.DestroAllEnnemies();
 }
