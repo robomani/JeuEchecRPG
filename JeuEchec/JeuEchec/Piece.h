@@ -109,6 +109,11 @@ public:
 	std::string GetPiecePowerDescr() { return m_PowerupDescr; }
 
 	/// <summary>
+	/// Update the piece Powerup Description
+	/// </summary>
+	virtual void UpdatePiecePowerDescr() {}
+
+	/// <summary>
 	/// Get if the power of the piece is ready to be used.
 	/// </summary>
 	/// <param name="a_Color">a color.</param>

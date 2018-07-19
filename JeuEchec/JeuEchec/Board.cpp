@@ -468,6 +468,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 							m_Cases[tempx - 1][tempy + 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
 							m_CurrentCase->UsePower();
 						}
+						Game::ChangeColorTurn();
 					}
 					else
 					{
@@ -486,6 +487,7 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 							m_Cases[tempx + 1][tempy + 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
 							m_CurrentCase->UsePower();
 						}
+						Game::ChangeColorTurn();
 					}
 					
 					break;

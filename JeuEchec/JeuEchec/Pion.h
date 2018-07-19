@@ -17,6 +17,11 @@ public:
 	/// Finalizes an instance of the <see cref="Pion"/> class.
 	/// </summary>
 	virtual ~Pion();
+
+	/// <summary>
+	/// Update the piece Powerup Description.
+	/// </summary>
+	virtual void UpdatePiecePowerDescr() { m_PowerupDescr = "KAMIKAZE! The Pion can kill himself to inflict " + std::to_string(m_Attack) + " Damage at everyone around the Pion."; }
 	
 	/// <summary>
 	/// Gets the possible attacks.

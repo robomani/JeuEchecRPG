@@ -92,6 +92,11 @@ public:
 	/// </summary>
 	/// <returns>The index J of the case</returns>
 	const int GetJ() { return (m_OriginalX - Board::X_OFFSET) / Board::CASE_HEIGHT; }
+
+	/// <summary>
+	/// Update the Powerup Description of the piece on this tile.
+	/// </summary>
+	void UpdatePiecePowerDescr() { m_Piece->UpdatePiecePowerDescr(); }
 	
 	/// <summary>
 	/// Determines whether this case is empty.

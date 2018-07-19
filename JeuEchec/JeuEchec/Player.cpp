@@ -1,3 +1,4 @@
+#include "EPieceType.h"
 #include "Player.h"
 #include "Text.h"
 #include "Case.h"
@@ -64,6 +65,12 @@ void Player::Power03(Board& a_Board)
 		ChangeManaBy(-3);
 		currentCase->BoostCurrentPiece(2);
 		Text::SetText(ETextContent::PiecesStats, currentCase->GetHP(), currentCase->GetAttack(), currentCase->GetArmor());
+		if (currentCase->GetPieceType() == Enums::EPieceType::Pion)
+		{
+			currentCase->UpdatePiecePowerDescr();
+		}
+		Text::SetText(ETextContent::PiecesPower, currentCase->GetPowerDescr());
+
 		ChangePowerTexts();
 	}
 }
