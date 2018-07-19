@@ -249,6 +249,7 @@ void Game::Update()
 			{
 				m_Player02->ChangeManaBy(-5);
 				m_Board->SetIsSwitchSuccessfull(false);
+				Text::SetText(ETextContent::SwitchMode, "");
 			}
 			m_Player01->ChangeManaBy(1);
 			m_Player01->ChangePowerTexts();
@@ -259,6 +260,7 @@ void Game::Update()
 			{
 				m_Player01->ChangeManaBy(-5);
 				m_Board->SetIsSwitchSuccessfull(false);
+				Text::SetText(ETextContent::SwitchMode, "");
 			}
 			m_Player02->ChangeManaBy(1);
 			m_Player02->ChangePowerTexts();
