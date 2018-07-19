@@ -193,6 +193,16 @@ public:
 	/// </summary>
 	void ResetCurrentPower() { m_Piece->ResetPower(); }
 
+	/// <summary>
+	/// Create Pawn on the tile
+	/// </summary>
+	void CreatePiece(Enums::EPieceType a_PieceType, Enums::EPieceColor a_Color);
+
+	/// <summary>
+	/// Return the color of the piece
+	/// </summary>
+	Enums::EPieceColor GetPieceColor() { return m_Piece->GetColor(); }
+
 private:
 	
 	/// <summary>

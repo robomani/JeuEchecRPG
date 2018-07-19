@@ -15,6 +15,11 @@ public:
 	static const int CASE_HEIGHT;  // The case's height
 	static const int X_OFFSET;
 	static const int Y_OFFSET;
+
+	int tempx;
+	int tempy;
+
+
 	
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Board"/> class.
@@ -69,6 +74,12 @@ public:
 	/// <param name="a_Y">The Y coordinate</param>
 	void MouseButtonUp(const int a_X, const int a_Y);
 
+	/// <summary>
+	/// Get The Current Selected Case.
+	/// </summary>
+	/// <returns>The current case selected.</returns>
+	Case* GetTransportingCase() { return m_TransportingCase; }  // The current case clicked
+
 	//Toggle if a piece is using it's power
 	void ToogleUsingPower();
 
@@ -91,6 +102,7 @@ private:
 	SDL_Surface* m_BoardTexture;   // The SDL Surface that contain the texture loaded.
 	std::vector<std::vector<Case*>> m_Cases;  // All the cases of the board.
 	Case* m_CurrentCase;  // The current case clicked
+	Case* m_TransportingCase;  // The current case clicked
 
 	std::vector<std::tuple<int, int>> m_AvailableMoveForCurrentPiece;  // Available moves for the piece clicked.
 	std::vector<std::tuple<int, int>> m_AffectedPowerForCurrentPiece;  // Cases affected by the power for the piece clicked.

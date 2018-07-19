@@ -29,6 +29,11 @@ void Case::Init()
 	m_Rect = { m_OriginalX, m_OriginalY, Board::CASE_WIDTH, Board::CASE_HEIGHT };
 }
 
+void Case::CreatePiece(Enums::EPieceType a_PieceType, Enums::EPieceColor a_Color)
+{
+	m_Piece = PieceFactory::CreatePiece(a_PieceType, a_Color);
+}
+
 void Case::Draw(SDL_Surface* a_Parent)
 {
 	if (m_Piece != nullptr) 

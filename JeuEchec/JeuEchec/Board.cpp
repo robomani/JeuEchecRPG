@@ -12,8 +12,9 @@ const int Board::CASE_HEIGHT = 100;
 const int Board::X_OFFSET = 100;
 const int Board::Y_OFFSET = 100;
 
-int tempx;
-int tempy;
+
+
+
 
 bool IsBetween(const int& i_Value, const int& i_Min, const int& i_Max);
 
@@ -303,15 +304,123 @@ void Board::MouseButtonUp(const int a_X, const int a_Y)
 						}
 						
 					}
-
+					Game::ChangeColorTurn();
 					break;
 				case Enums::EPieceType::Chevalier:
+					if (m_TransportingCase == nullptr)
+					{
+						if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+						{
+							// The targeted case is empty
+							if (caseTargeted->IsEmpty())
+							{
+
+							}
+							else if (caseTargeted->IsNotEmpty())
+							{
+								m_TransportingCase = caseTargeted;
+							}
+						}
+					}
+					else
+					{
+						if (std::find(m_AvailableMoveForCurrentPiece.begin(), m_AvailableMoveForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AvailableMoveForCurrentPiece.end())
+						{
+							// The targeted case is empty
+							if (caseTargeted->IsEmpty())
+							{
+								m_CurrentCase->UsePower();
+								caseTargeted->SwapPieceWith(m_TransportingCase);
+								m_TransportingCase = nullptr;
+								Game::ChangeColorTurn();
+							}
+
+						}
+					}
 					break;
 				case Enums::EPieceType::Tour:
+					if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+					{
+						// The targeted case is empty
+						if (caseTargeted->IsEmpty())
+						{
+
+						}
+						else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
+						{
+							m_CurrentCase->UsePower();
+							int damage = m_CurrentCase->CurrentPieceAttack();
+							caseTargeted->SwapPieceWith(m_CurrentCase);
+							if (m_CurrentCase->DamageCurrentPiece(damage))
+							{
+								m_CurrentCase->RemovePiece();
+							}
+							else
+							{
+								caseTargeted->SwapPieceWith(m_CurrentCase);
+							}
+							ResetUsingPower();
+						}
+					}
 					break;
 				case Enums::EPieceType::Fou:
+					if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())
+					{
+						// The targeted case is empty
+						if (caseTargeted->IsEmpty())
+						{
+
+						}
+						else if (caseTargeted->IsPieceIsNotThisColor(Game::GetColorTurn()))
+						{
+							m_CurrentCase->UsePower();
+							Enums::EPieceType temp = caseTargeted->GetPieceType();
+							caseTargeted->RemovePiece();
+							caseTargeted->CreatePiece(temp, m_CurrentCase->GetPieceColor());
+							Game::ChangeColorTurn();
+						}
+					}
+
+
 					break;
 				case Enums::EPieceType::Reine:
+					if (m_CurrentCase->GetPieceColor() == Enums::EPieceColor::Blanche)
+					{
+						if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy - 1, 0, 7) && m_Cases[tempx - 1][tempy - 1]->IsEmpty())
+						{
+							m_Cases[tempx - 1][tempy - 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+						if (IsBetween(tempx - 1, 0, 7) && m_Cases[tempx - 1][tempy]->IsEmpty())
+						{
+							m_Cases[tempx - 1][tempy]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+						if (IsBetween(tempx - 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx - 1][tempy + 1]->IsEmpty())
+						{
+							m_Cases[tempx - 1][tempy + 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+					}
+					else
+					{
+						if (IsBetween(tempx + 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx + 1][tempy - 1]->IsEmpty())
+						{
+							m_Cases[tempx + 1][tempy - 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+						if (IsBetween(tempx + 1, 0, 7) && m_Cases[tempx + 1][tempy]->IsEmpty())
+						{
+							m_Cases[tempx + 1][tempy]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+						if (IsBetween(tempx + 1, 0, 7) && IsBetween(tempy + 1, 0, 7) && m_Cases[tempx + 1][tempy + 1]->IsEmpty())
+						{
+							m_Cases[tempx + 1][tempy + 1]->CreatePiece(Enums::EPieceType::Pion, m_CurrentCase->GetPieceColor());
+							m_CurrentCase->UsePower();
+						}
+					}
+					
 					break;
 				case Enums::EPieceType::Roi:
 					if (std::find(m_AffectedPowerForCurrentPiece.begin(), m_AffectedPowerForCurrentPiece.end(), std::tuple<int, int>(i, j)) != m_AffectedPowerForCurrentPiece.end())

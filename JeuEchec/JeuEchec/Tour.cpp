@@ -3,7 +3,7 @@
 Tour::Tour(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_Armor)
 	: Piece(a_PieceColor == Enums::EPieceColor::Blanche ? "images/WTower" : "images/BTower", i_HP, i_Attack, i_Armor)
 {
-	Piece::m_PowerupDescr = "Attack a Enemy in a direction and if the Enemy Die, The Tour Keep Attacking In the Same Direction.";
+	Piece::m_PowerupDescr = "The next move of this piece do not end the turn";
 
 	m_PieceType = Enums::EPieceType::Tour;
 	m_PieceColor = a_PieceColor;
@@ -14,12 +14,13 @@ Tour::Tour(const Enums::EPieceColor a_PieceColor, int i_HP, int i_Attack, int i_
 		m_AvailableMoves[Enums::EDirection::East].push_back(std::tuple<int, int>(0, j));
 		m_AvailableMoves[Enums::EDirection::South].push_back(std::tuple<int, int>(-i, 0));
 		m_AvailableMoves[Enums::EDirection::West].push_back(std::tuple<int, int>(0, -j));
+
+		m_AffectedPower[Enums::EDirection::North].push_back(std::tuple<int, int>(i, 0));
+		m_AffectedPower[Enums::EDirection::East].push_back(std::tuple<int, int>(0, j));
+		m_AffectedPower[Enums::EDirection::South].push_back(std::tuple<int, int>(-i, 0));
+		m_AffectedPower[Enums::EDirection::West].push_back(std::tuple<int, int>(0, -j));
 	}
 	
-	m_AffectedPower[Enums::EDirection::East].push_back(std::tuple<int, int>(0, 1));
-	m_AffectedPower[Enums::EDirection::North].push_back(std::tuple<int, int>(1, 0));
-	m_AffectedPower[Enums::EDirection::West].push_back(std::tuple<int, int>(0, -1));
-	m_AffectedPower[Enums::EDirection::South].push_back(std::tuple<int, int>(-1, 0));
 	
 }
 

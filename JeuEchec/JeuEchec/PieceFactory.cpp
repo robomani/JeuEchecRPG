@@ -20,7 +20,7 @@ Piece * PieceFactory::CreatePiece(const Enums::EPieceType a_PieceType, const Enu
 	switch (a_PieceType)
 	{
 	case Enums::EPieceType::Pion:
-		return new Pion(a_Color, 2, 3);
+		return new Pion(a_Color, 2, 2);
 		break;
 	case Enums::EPieceType::Tour:
 		return new Tour(a_Color, 4, 2, 1);
