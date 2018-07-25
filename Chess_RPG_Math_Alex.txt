@@ -1,0 +1,31 @@
+MANA:
+Le mana augmente de 1 a chaque tours. 
+Le premier a jouer commence avec 0 Mana.
+Le Joueur Utilise les touches 1, 2, 3, 4, 5. pour utiliser ses Pouvoir.
+Le joueur peut seulement utiliser ses pouvoir s'il as assez de mana (Le texte s'affiche en vert).
+Si le pouvoir cible une pièce, le joueur doit la selectionner avec sa souris avant de peser sur la touche 1,2,3,4,5.
+Pour le pouvoir de switch de 2 pieces, le joueur doit selectionner une piece, peser sur la touche (une message s'affiche), et relacher la piece sur une piece alliée pour faire le switch.
+
+TEXTES:
+Le texte des pouvoirs disponible pour le joueur actif s'affiche en bas a droite.
+Le texte du pouvoirs et des stats d'une piece est affiché en haut.
+N'importe quel joueur peut voir les stats de n'importe quel pions, suffit de cliquer sur une piece pour les affichers.
+
+VICTOIRE:
+Si un roi est tué, la partie se termine.
+Le joueur ayant son roi sur le jeu l'emporte.
+
+POUVOIRS PIECES:
+Pour utiliser le pouvoir d'une piece, il faut la selectionner et en gardant le click gauche de la souris enfoncé, ensuite appuiller sur la touche Espace et finalement relacher la piece dans une zone valide (case avec coin bleu)
+Pion: Kamikaze fait ses dégas sur toutes les cases adjecente de sa position initialle et sur la case du pion.
+Tour: Se téléporte sur n'importe quelle case en ligne droite non occuper par un allier et attaque et/ou prend la nouvelle position. Special ce mouvment ne fini pas le tour du joueur actif.
+Fou: Si il est utiliser sur un ennemi adjecent et non diagonnale, détruit l'ennemi et le récussite avec ses valeurs de bases, mais la piece appartien maintenent au joueur qui controllait le fou lors de l'utilisation du pouvoir.
+Chevallier: Lacher le chevalier sur une piece adjecente que l'on veut bouger et ensuite dragger le chevalier vers une case vide sur laquelle il aurait le droit de bouger pour téléporter la piece choisie èa cet endroit.
+Reine: Crée jusqu'a trois pions devant(vers le coté ennemi) la reine, si une ou plusieur de ses cases sont occuper ces cases sont ignorer par le pouvoir.
+Roi: Le lacher sur une piece allier détruit la piece allier et donne toutes ses stats au roi. Le roi ne gagne pas l'habileter spéciale des pieces qu'il mange, mais si la piece manger n'avait pas utiliser son special le roi peut reutiliser le sien
+
+Attaque:
+Si une piece est déplacée sur une case occupée par un ennemi. La piece attaque la piece ennemie (Vie défenseur -= (Déga Attaquant - Armure défenseur)). 
+Après l'attaque, si la cible de l'attaque as plus de 0 points de vie, la pièece qui a déclenchée l'attaque retourne a sa position initiale(Celle avant l'attaque).
+
+ 

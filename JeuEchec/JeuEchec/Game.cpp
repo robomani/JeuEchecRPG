@@ -39,17 +39,17 @@ Game::~Game()
 
 	Text::Destroy();
 
-	TTF_Quit(); //Close the TTF.
+	TTF_Quit(); // Close the TTF.
 }
 
 void Game::Init()
 {
-	TTF_Init(); //Init the TTF for the game to Draw texts.
+	TTF_Init(); // Init the TTF for the game to Draw texts.
 
-	//Init the Text
+	// Init the Text.
 	Text::Init();
 
-	// Init the SDL Window
+	// Init the SDL Window.
 	m_Window = SDL_CreateWindow("Once upon a chess", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	m_WindowSurface = SDL_GetWindowSurface(m_Window);
 	m_BackgroundSurface = IMG_Load("./images/Background.jpg");
